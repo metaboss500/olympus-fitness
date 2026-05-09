@@ -931,8 +931,8 @@
           <!-- Handle -->
           <div class="ba-handle" id="ba-handle" style="left:50%;" role="slider" aria-label="Slider σύγκρισης" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
           <!-- Labels -->
-          <div class="absolute top-4 left-4 z-20 text-xs font-bold uppercase tracking-widest                  bg-black/50 text-gray-300 px-3 py-1 rounded-full pointer-events-none" aria-hidden="true">Πριν</div>
-          <div class="absolute top-4 right-4 z-20 text-xs font-bold uppercase tracking-widest                  bg-black/50 px-3 py-1 rounded-full pointer-events-none" style="color:var(--color-accent);" aria-hidden="true">Μετά</div>
+          <div class="absolute top-4 left-4 z-20 text-xs font-bold uppercase tracking-widest                 bg-black/50 text-gray-300 px-3 py-1 rounded-full pointer-events-none" aria-hidden="true">Πριν</div>
+          <div class="absolute top-4 right-4 z-20 text-xs font-bold uppercase tracking-widest                 bg-black/50 px-3 py-1 rounded-full pointer-events-none" style="color:var(--color-accent);" aria-hidden="true">Μετά</div>
         </div>
       </div>
     </section>
@@ -1561,7 +1561,19 @@
     </footer>
     <!-- ═══════════════════════════════════════════════════════     JAVASCRIPT═══════════════════════════════════════════════════════ -->
     <script>
-      // ── HELPERS ──────────────────────────────────────────────const $ = (sel) => document.querySelector(sel);const hours = {  // [openH, openM, closeH, closeM] — local Greek time  0: [9, 0, 17, 0],   // Sun  1: [6, 30, 22, 0],  // Mon  2: [6, 30, 22, 0],  3: [6, 30, 22, 0],  4: [6, 30, 22, 0],  5: [6, 30, 22, 0],  // Fri  6: [8, 0, 20, 0],   // Sat};
+      // ── HELPERS ──────────────────────────────────────────────
+      const $ = (sel) => document.querySelector(sel);
+      const hours = { 
+        // [openH, openM, closeH, closeM] — local Greek time
+        0: [9, 0, 17, 0],   // Sun
+        1: [6, 30, 22, 0],  // Mon
+        2: [6, 30, 22, 0],
+        3: [6, 30, 22, 0],
+        4: [6, 30, 22, 0],
+        5: [6, 30, 22, 0],  // Fri
+        6: [8, 0, 20, 0],   // Sat
+      };
+
       function getOpenStatus() {
         const now = new Date();
         const day = now.getDay();
@@ -1602,15 +1614,52 @@
         const isOpen = getOpenStatus();
         const label = isOpen ? 'Ανοιχτά' : 'Κλειστά';
         const cls = isOpen ? 'open' : 'closed';
-        // Navbar badge  const badge = $('#open-badge');  if (badge) {    badge.className = '';    badge.id = 'open-badge';    badge.classList.add(cls);    $('#badge-text').textContent = label;  }
-        // Footer badge  const badgeF = $('#open-badge-footer');  if (badgeF) {    badgeF.className = 'inline-flex items-center gap-2 text-sm font-bold px-3 py-1.5 rounded-full';    if (isOpen) {      badgeF.style.background = 'rgba(34,197,94,0.15)';      badgeF.style.color = '#22c55e';      badgeF.style.border = '1px solid rgba(34,197,94,0.3)';      $('#badge-dot-footer').style.background = '#22c55e';    } else {      badgeF.style.background = 'rgba(239,68,68,0.12)';      badgeF.style.color = '#ef4444';      badgeF.style.border = '1px solid rgba(239,68,68,0.2)';      $('#badge-dot-footer').style.background = '#ef4444';    }    $('#badge-text-footer').textContent = label;  }
+        
+        // Navbar badge  
+        const badge = $('#open-badge');  
+        if (badge) {    
+          badge.className = '';    
+          badge.id = 'open-badge';    
+          badge.classList.add(cls);    
+          $('#badge-text').textContent = label;  
+        }
+
+        // Footer badge  
+        const badgeF = $('#open-badge-footer');  
+        if (badgeF) {    
+          badgeF.className = 'inline-flex items-center gap-2 text-sm font-bold px-3 py-1.5 rounded-full';    
+          if (isOpen) {      
+            badgeF.style.background = 'rgba(34,197,94,0.15)';      
+            badgeF.style.color = '#22c55e';      
+            badgeF.style.border = '1px solid rgba(34,197,94,0.3)';      
+            $('#badge-dot-footer').style.background = '#22c55e';    
+          } else {      
+            badgeF.style.background = 'rgba(239,68,68,0.12)';      
+            badgeF.style.color = '#ef4444';      
+            badgeF.style.border = '1px solid rgba(239,68,68,0.2)';      
+            $('#badge-dot-footer').style.background = '#ef4444';    
+          }    
+          $('#badge-text-footer').textContent = label;  
+        }
+        
         const nst = $('#next-status-text');
         if (nst) nst.textContent = getNextStatusText();
       }
+      
       updateBadge();
       setInterval(updateBadge, 60000);
-      // ── NAVBAR SCROLL ─────────────────────────────────────────window.addEventListener('scroll', () => {  const nb = $('#navbar');  if (window.scrollY > 40) nb.classList.add('scrolled');  else nb.classList.remove('scrolled');}, { passive: true });
-      // ── MOBILE MENU ───────────────────────────────────────────const menuToggle = $('#menu-toggle');const mobileMenu = $('#mobile-menu');
+
+      // ── NAVBAR SCROLL ─────────────────────────────────────────
+      window.addEventListener('scroll', () => {  
+        const nb = $('#navbar');  
+        if (window.scrollY > 40) nb.classList.add('scrolled');  
+        else nb.classList.remove('scrolled');
+      }, { passive: true });
+
+      // ── MOBILE MENU ───────────────────────────────────────────
+      const menuToggle = $('#menu-toggle');
+      const mobileMenu = $('#mobile-menu');
+
       function closeMobileMenu() {
         mobileMenu.classList.remove('open');
         menuToggle.setAttribute('aria-expanded', 'false');
@@ -1618,6 +1667,7 @@
         $('#ham2').style.opacity = '1';
         $('#ham3').style.transform = '';
       }
+
       menuToggle.addEventListener('click', () => {
         const isOpen = mobileMenu.classList.toggle('open');
         menuToggle.setAttribute('aria-expanded', isOpen);
@@ -1629,50 +1679,90 @@
           closeMobileMenu();
         }
       });
-      // ── FAQ ACCORDION ─────────────────────────────────────────function toggleFaq(btn) {  const answer = btn.nextElementSibling;  const isOpen = answer.classList.contains('open');
-      // Close all  document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));  document.querySelectorAll('.faq-btn').forEach(b => {    b.classList.remove('open');    b.setAttribute('aria-expanded', 'false');  });
-      if (!isOpen) {
-        answer.classList.add('open');
-        btn.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-      }
-      // ── BEFORE / AFTER SLIDER ─────────────────────────────────(function() {  const container = document.getElementById('ba-container');  const after = document.getElementById('ba-after');  const handle = document.getElementById('ba-handle');  if (!container) return;
-      let dragging = false;
 
-      function setPos(x) {
-        const rect = container.getBoundingClientRect();
-        let pct = ((x - rect.left) / rect.width) * 100;
-        pct = Math.max(2, Math.min(98, pct));
-        after.style.width = pct + '%';
-        handle.style.left = pct + '%';
-        handle.setAttribute('aria-valuenow', Math.round(pct));
+      // ── FAQ ACCORDION ─────────────────────────────────────────
+      function toggleFaq(btn) {  
+        const answer = btn.nextElementSibling;  
+        const isOpen = answer.classList.contains('open');
+
+        // Close all  
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));  
+        document.querySelectorAll('.faq-btn').forEach(b => {    
+          b.classList.remove('open');    
+          b.setAttribute('aria-expanded', 'false');  
+        });
+
+        if (!isOpen) {
+          answer.classList.add('open');
+          btn.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
       }
-      handle.addEventListener('mousedown', (e) => {
-        dragging = true;
-        e.preventDefault();
-      });
-      handle.addEventListener('touchstart', (e) => {
-        dragging = true;
-      }, {
-        passive: true
-      });
-      window.addEventListener('mousemove', (e) => {
-        if (dragging) setPos(e.clientX);
-      });
-      window.addEventListener('touchmove', (e) => {
-        if (dragging && e.touches[0]) setPos(e.touches[0].clientX);
-      }, {
-        passive: true
-      });
-      window.addEventListener('mouseup', () => {
-        dragging = false;
-      });
-      window.addEventListener('touchend', () => {
-        dragging = false;
-      });
-      // Keyboard support  handle.addEventListener('keydown', (e) => {    const rect = container.getBoundingClientRect();    const cur = parseFloat(after.style.width || '50');    if (e.key === 'ArrowLeft') setPos(rect.left + (cur - 5) / 100 * rect.width);    if (e.key === 'ArrowRight') setPos(rect.left + (cur + 5) / 100 * rect.width);  });})();
-      // ── FORM SUBMIT ───────────────────────────────────────────function handleFormSubmit(e) {  e.preventDefault();  const form = e.target;  const success = document.getElementById('form-success');  form.style.display = 'none';  success.classList.remove('hidden');}
+
+      // ── BEFORE / AFTER SLIDER ─────────────────────────────────
+      (function() {  
+        const container = document.getElementById('ba-container');  
+        const after = document.getElementById('ba-after');  
+        const handle = document.getElementById('ba-handle');  
+        if (!container) return;
+
+        let dragging = false;
+
+        function setPos(x) {
+          const rect = container.getBoundingClientRect();
+          let pct = ((x - rect.left) / rect.width) * 100;
+          pct = Math.max(2, Math.min(98, pct));
+          after.style.width = pct + '%';
+          handle.style.left = pct + '%';
+          handle.setAttribute('aria-valuenow', Math.round(pct));
+        }
+
+        handle.addEventListener('mousedown', (e) => {
+          dragging = true;
+          e.preventDefault();
+        });
+
+        handle.addEventListener('touchstart', (e) => {
+          dragging = true;
+        }, {
+          passive: true
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (dragging) setPos(e.clientX);
+        });
+
+        window.addEventListener('touchmove', (e) => {
+          if (dragging && e.touches[0]) setPos(e.touches[0].clientX);
+        }, {
+          passive: true
+        });
+
+        window.addEventListener('mouseup', () => {
+          dragging = false;
+        });
+
+        window.addEventListener('touchend', () => {
+          dragging = false;
+        });
+
+        // Keyboard support  
+        handle.addEventListener('keydown', (e) => {    
+          const rect = container.getBoundingClientRect();    
+          const cur = parseFloat(after.style.width || '50');    
+          if (e.key === 'ArrowLeft') setPos(rect.left + (cur - 5) / 100 * rect.width);    
+          if (e.key === 'ArrowRight') setPos(rect.left + (cur + 5) / 100 * rect.width);  
+        });
+      })();
+
+      // ── FORM SUBMIT ───────────────────────────────────────────
+      function handleFormSubmit(e) {  
+        e.preventDefault();  
+        const form = e.target;  
+        const success = document.getElementById('form-success');  
+        form.style.display = 'none';  
+        success.classList.remove('hidden');
+      }
     </script>
   </body>
 </html>
