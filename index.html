@@ -1,109 +1,1759 @@
-<!DOCTYPE html><html lang="el">  <head>    <meta charset="UTF-8" />    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <title>Olympus Fitness | Γυμναστήριο Θεσσαλονίκη</title>    <meta name="description" content="Olympus Fitness – Το premium γυμναστήριο της Θεσσαλονίκης. Personal training, ομαδικά προγράμματα, CrossFit, Yoga και πολλά άλλα." />    <script src="https://cdn.tailwindcss.com"></script>    <script>      tailwind.config = {        theme: {          extend: {            colors: {              accent: 'var(--color-accent)',              bg: 'var(--color-bg)',            },            fontFamily: {              display: ['Bebas Neue', 'Impact', 'sans-serif'],              body: ['Inter', 'system-ui', 'sans-serif'],            }          }        }      }    </script>    <link rel="preconnect" href="https://fonts.googleapis.com" />    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />    <style>      :root {        --color-accent: #C9A84C;        --color-bg: #0A0A0A;        --color-bg2: #111111;        --color-bg3: #1A1A1A;        --color-text: #F0F0F0;        --color-muted: #888888;        --color-border: #2A2A2A;      }
-      * {        box-sizing: border-box;        scroll-behavior: smooth;      }
-      body {        background-color: var(--color-bg);        color: var(--color-text);        font-family: 'Inter', system-ui, sans-serif;        margin: 0;        overflow-x: hidden;      }
-      /* ── SCROLLBAR ── */      ::-webkit-scrollbar {        width: 6px;      }
-      ::-webkit-scrollbar-track {        background: var(--color-bg);      }
-      ::-webkit-scrollbar-thumb {        background: var(--color-accent);        border-radius: 3px;      }
-      /* ── TYPOGRAPHY ── */      .font-display {        font-family: 'Bebas Neue', Impact, sans-serif;        letter-spacing: 0.04em;      }
-      /* ── GOLD GRADIENT ── */      .gold-text {        background: linear-gradient(135deg, #C9A84C 0%, #F5D98B 50%, #C9A84C 100%);        -webkit-background-clip: text;        -webkit-text-fill-color: transparent;        background-clip: text;      }
-      /* ── NAV ── */      #navbar {        transition: background 0.4s ease, box-shadow 0.4s ease;      }
-      #navbar.scrolled {        background: rgba(10, 10, 10, 0.97) !important;        box-shadow: 0 2px 30px rgba(201, 168, 76, 0.15);      }
-      /* ── HERO ── */      .hero-section {        min-height: 100vh;        position: relative;        overflow: hidden;      }
-      .hero-bg {        position: absolute;        inset: 0;        z-index: 0;      }
-      .hero-bg img {        width: 100%;        height: 100%;        object-fit: cover;        object-position: center;      }
-      .hero-overlay {        position: absolute;        inset: 0;        z-index: 1;        background: linear-gradient(135deg, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.6) 50%, rgba(10, 10, 10, 0.75) 100%);      }
-      .hero-texture {        position: absolute;        inset: 0;        z-index: 2;        display: flex;        align-items: center;        justify-content: flex-end;        overflow: hidden;        pointer-events: none;      }
-      .hero-texture-text {        font-family: 'Bebas Neue', sans-serif;        font-size: clamp(10rem, 25vw, 22rem);        line-height: 0.85;        color: rgba(201, 168, 76, 0.04);        white-space: nowrap;        user-select: none;        text-align: right;        padding-right: 2rem;      }
-      .hero-content {        position: relative;        z-index: 3;      }
-      /* ── TRUST STRIP ── */      .trust-strip {        background: linear-gradient(90deg, rgba(201, 168, 76, 0.12) 0%, rgba(201, 168, 76, 0.06) 100%);        border-top: 1px solid rgba(201, 168, 76, 0.3);        border-bottom: 1px solid rgba(201, 168, 76, 0.15);      }
-      /* ── MARQUEE ── */      .marquee-track {        display: flex;        gap: 3rem;        animation: marquee 22s linear infinite;        white-space: nowrap;      }
-      @keyframes marquee {        from {          transform: translateX(0);        }
-        to {          transform: translateX(-50%);        }      }
-      .marquee-wrapper {        overflow: hidden;      }
-      /* ── STAT BAR ── */      .stat-bar {        background: linear-gradient(90deg, #111 0%, #1a1a1a 100%);      }
-      .stat-number {        font-family: 'Bebas Neue', sans-serif;        font-size: clamp(2.5rem, 6vw, 4rem);      }
-      /* ── SERVICE CARDS ── */      .service-card {        background: var(--color-bg3);        border: 1px solid var(--color-border);        border-radius: 1.5rem;        overflow: hidden;        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;      }
-      .service-card:hover {        transform: translateY(-8px);        box-shadow: 0 20px 60px rgba(201, 168, 76, 0.15);        border-color: rgba(201, 168, 76, 0.4);      }
-      .service-card .card-img {        aspect-ratio: 4/3;        overflow: hidden;        position: relative;      }
-      .service-card .card-img img {        width: 100%;        height: 100%;        object-fit: cover;        transition: transform 0.5s ease;      }
-      .service-card:hover .card-img img {        transform: scale(1.06);      }
-      .card-badge {        position: absolute;        top: 0.75rem;        right: 0.75rem;        background: var(--color-accent);        color: #000;        font-size: 0.7rem;        font-weight: 700;        letter-spacing: 0.08em;        padding: 0.2rem 0.6rem;        border-radius: 999px;        text-transform: uppercase;      }
-      /* ── PRICING ── */      .pricing-card {        background: var(--color-bg3);        border: 1px solid var(--color-border);        border-radius: 1.5rem;        transition: transform 0.3s ease, box-shadow 0.3s ease;      }
-      .pricing-card:hover {        transform: translateY(-6px);      }
-      .pricing-card.popular {        border-color: var(--color-accent);        background: linear-gradient(160deg, #1e1a0e 0%, #1A1A1A 100%);        box-shadow: 0 0 60px rgba(201, 168, 76, 0.2);      }
-      .popular-badge {        background: var(--color-accent);        color: #000;        font-size: 0.7rem;        font-weight: 800;        letter-spacing: 0.1em;        padding: 0.3rem 1rem;        border-radius: 999px;        text-transform: uppercase;      }
-      .price-num {        font-family: 'Bebas Neue', sans-serif;        font-size: 3.5rem;        line-height: 1;      }
-      .check-item {        display: flex;        align-items: center;        gap: 0.6rem;        font-size: 0.9rem;      }
-      .check-icon {        color: var(--color-accent);        font-size: 1rem;        flex-shrink: 0;      }
-      .cross-icon {        color: #444;        font-size: 1rem;        flex-shrink: 0;      }
-      /* ── REVIEWS ── */      .review-card {        background: var(--color-bg3);        border: 1px solid var(--color-border);        border-radius: 1.25rem;        transition: border-color 0.3s;      }
-      .review-card:hover {        border-color: rgba(201, 168, 76, 0.3);      }
-      .stars {        color: var(--color-accent);        letter-spacing: 0.1em;      }
-      /* ── FAQ ── */      .faq-item {        border-bottom: 1px solid var(--color-border);      }
-      .faq-btn {        width: 100%;        text-align: left;        background: none;        border: none;        cursor: pointer;        color: var(--color-text);        padding: 1.2rem 0;        display: flex;        justify-content: space-between;        align-items: center;        font-size: 1rem;        font-weight: 600;        transition: color 0.2s;      }
-      .faq-btn:hover {        color: var(--color-accent);      }
-      .faq-btn .faq-icon {        font-size: 1.4rem;        font-weight: 300;        color: var(--color-accent);        transition: transform 0.35s ease;        flex-shrink: 0;        margin-left: 1rem;      }
-      .faq-btn.open .faq-icon {        transform: rotate(45deg);      }
-      .faq-answer {        max-height: 0;        overflow: hidden;        transition: max-height 0.4s ease, padding 0.3s ease;        color: var(--color-muted);        line-height: 1.7;        font-size: 0.95rem;      }
-      .faq-answer.open {        max-height: 400px;        padding-bottom: 1.2rem;      }
-      /* ── PROCESS ── */      .step-line {        display: none;      }
-      @media (min-width: 768px) {        .step-line {          display: block;        }      }
-      /* ── GALLERY ── */      .gallery-grid {        columns: 2;        column-gap: 0.75rem;      }
-      @media (min-width: 768px) {        .gallery-grid {          columns: 3;        }      }
-      @media (min-width: 1024px) {        .gallery-grid {          columns: 4;        }      }
-      .gallery-item {        break-inside: avoid;        margin-bottom: 0.75rem;        border-radius: 1rem;        overflow: hidden;        display: block;        cursor: zoom-in;      }
-      .gallery-item img {        width: 100%;        display: block;        transition: transform 0.5s ease, filter 0.3s ease;        filter: grayscale(20%);      }
-      .gallery-item:hover img {        transform: scale(1.04);        filter: grayscale(0%);      }
-      /* ── BEFORE/AFTER SLIDER ── */      .ba-container {        position: relative;        overflow: hidden;        border-radius: 1rem;        user-select: none;      }
-      .ba-after {        position: absolute;        inset: 0;        overflow: hidden;      }
-      .ba-after img {        position: absolute;        top: 0;        left: 0;        width: 100%;        height: 100%;        object-fit: cover;      }
-      .ba-before img {        width: 100%;        height: 100%;        object-fit: cover;        display: block;      }
-      .ba-handle {        position: absolute;        top: 0;        bottom: 0;        width: 4px;        background: var(--color-accent);        cursor: ew-resize;        z-index: 10;      }
-      .ba-handle::before {        content: '';        position: absolute;        top: 50%;        left: 50%;        transform: translate(-50%, -50%);        width: 42px;        height: 42px;        border-radius: 50%;        background: var(--color-accent);        box-shadow: 0 0 20px rgba(201, 168, 76, 0.6);      }
-      .ba-handle::after {        content: '◀ ▶';        position: absolute;        top: 50%;        left: 50%;        transform: translate(-50%, -50%);        color: #000;        font-size: 0.65rem;        font-weight: 800;        white-space: nowrap;        z-index: 11;      }
-      /* ── OPEN/CLOSED BADGE ── */      #open-badge {        display: inline-flex;        align-items: center;        gap: 0.4rem;        font-size: 0.8rem;        font-weight: 700;        padding: 0.25rem 0.8rem;        border-radius: 999px;        text-transform: uppercase;        letter-spacing: 0.08em;      }
-      #open-badge.open {        background: rgba(34, 197, 94, 0.15);        color: #22c55e;        border: 1px solid rgba(34, 197, 94, 0.3);      }
-      #open-badge.closed {        background: rgba(239, 68, 68, 0.12);        color: #ef4444;        border: 1px solid rgba(239, 68, 68, 0.2);      }
-      #badge-dot {        width: 7px;        height: 7px;        border-radius: 50%;        flex-shrink: 0;      }
-      #open-badge.open #badge-dot {        background: #22c55e;        animation: pulse-dot 2s ease-in-out infinite;      }
-      #open-badge.closed #badge-dot {        background: #ef4444;      }
+
+<!DOCTYPE html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Olympus Fitness | Γυμναστήριο Θεσσαλονίκη</title>
+    <meta name="description" content="Olympus Fitness – Το premium γυμναστήριο της Θεσσαλονίκης. Personal training, ομαδικά προγράμματα, CrossFit, Yoga και πολλά άλλα." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              accent: 'var(--color-accent)',
+              bg: 'var(--color-bg)',
+            },
+            fontFamily: {
+              display: ['Bebas Neue', 'Impact', 'sans-serif'],
+              body: ['Inter', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --color-accent: #C9A84C;
+        --color-bg: #0A0A0A;
+        --color-bg2: #111111;
+        --color-bg3: #1A1A1A;
+        --color-text: #F0F0F0;
+        --color-muted: #888888;
+        --color-border: #2A2A2A;
+      }
+
+      * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        font-family: 'Inter', system-ui, sans-serif;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--color-bg);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--color-accent);
+        border-radius: 3px;
+      }
+
+      /* ── TYPOGRAPHY ── */
+      .font-display {
+        font-family: 'Bebas Neue', Impact, sans-serif;
+        letter-spacing: 0.04em;
+      }
+
+      /* ── GOLD GRADIENT ── */
+      .gold-text {
+        background: linear-gradient(135deg, #C9A84C 0%, #F5D98B 50%, #C9A84C 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* ── NAV ── */
+      #navbar {
+        transition: background 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      #navbar.scrolled {
+        background: rgba(10, 10, 10, 0.97) !important;
+        box-shadow: 0 2px 30px rgba(201, 168, 76, 0.15);
+      }
+
+      /* ── HERO ── */
+      .hero-section {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(135deg, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.6) 50%, rgba(10, 10, 10, 0.75) 100%);
+      }
+
+      .hero-texture {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .hero-texture-text {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(10rem, 25vw, 22rem);
+        line-height: 0.85;
+        color: rgba(201, 168, 76, 0.04);
+        white-space: nowrap;
+        user-select: none;
+        text-align: right;
+        padding-right: 2rem;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 3;
+      }
+
+      /* ── TRUST STRIP ── */
+      .trust-strip {
+        background: linear-gradient(90deg, rgba(201, 168, 76, 0.12) 0%, rgba(201, 168, 76, 0.06) 100%);
+        border-top: 1px solid rgba(201, 168, 76, 0.3);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+      }
+
+      /* ── MARQUEE ── */
+      .marquee-track {
+        display: flex;
+        gap: 3rem;
+        animation: marquee 22s linear infinite;
+        white-space: nowrap;
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .marquee-wrapper {
+        overflow: hidden;
+      }
+
+      /* ── STAT BAR ── */
+      .stat-bar {
+        background: linear-gradient(90deg, #111 0%, #1a1a1a 100%);
+      }
+
+      .stat-number {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(2.5rem, 6vw, 4rem);
+      }
+
+      /* ── SERVICE CARDS ── */
+      .service-card {
+        background: var(--color-bg3);
+        border: 1px solid var(--color-border);
+        border-radius: 1.5rem;
+        overflow: hidden;
+        transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 60px rgba(201, 168, 76, 0.15);
+        border-color: rgba(201, 168, 76, 0.4);
+      }
+
+      .service-card .card-img {
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .service-card .card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .service-card:hover .card-img img {
+        transform: scale(1.06);
+      }
+
+      .card-badge {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: var(--color-accent);
+        color: #000;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.2rem 0.6rem;
+        border-radius: 999px;
+        text-transform: uppercase;
+      }
+
+      /* ── PRICING ── */
+      .pricing-card {
+        background: var(--color-bg3);
+        border: 1px solid var(--color-border);
+        border-radius: 1.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-6px);
+      }
+
+      .pricing-card.popular {
+        border-color: var(--color-accent);
+        background: linear-gradient(160deg, #1e1a0e 0%, #1A1A1A 100%);
+        box-shadow: 0 0 60px rgba(201, 168, 76, 0.2);
+      }
+
+      .popular-badge {
+        background: var(--color-accent);
+        color: #000;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        padding: 0.3rem 1rem;
+        border-radius: 999px;
+        text-transform: uppercase;
+      }
+
+      .price-num {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 3.5rem;
+        line-height: 1;
+      }
+
+      .check-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.9rem;
+      }
+
+      .check-icon {
+        color: var(--color-accent);
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .cross-icon {
+        color: #444;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      /* ── REVIEWS ── */
+      .review-card {
+        background: var(--color-bg3);
+        border: 1px solid var(--color-border);
+        border-radius: 1.25rem;
+        transition: border-color 0.3s;
+      }
+
+      .review-card:hover {
+        border-color: rgba(201, 168, 76, 0.3);
+      }
+
+      .stars {
+        color: var(--color-accent);
+        letter-spacing: 0.1em;
+      }
+
+      /* ── FAQ ── */
+      .faq-item {
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .faq-btn {
+        width: 100%;
+        text-align: left;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--color-text);
+        padding: 1.2rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: color 0.2s;
+      }
+
+      .faq-btn:hover {
+        color: var(--color-accent);
+      }
+
+      .faq-btn .faq-icon {
+        font-size: 1.4rem;
+        font-weight: 300;
+        color: var(--color-accent);
+        transition: transform 0.35s ease;
+        flex-shrink: 0;
+        margin-left: 1rem;
+      }
+
+      .faq-btn.open .faq-icon {
+        transform: rotate(45deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.3s ease;
+        color: var(--color-muted);
+        line-height: 1.7;
+        font-size: 0.95rem;
+      }
+
+      .faq-answer.open {
+        max-height: 400px;
+        padding-bottom: 1.2rem;
+      }
+
+      /* ── PROCESS ── */
+      .step-line {
+        display: none;
+      }
+
+      @media (min-width: 768px) {
+        .step-line {
+          display: block;
+        }
+      }
+
+      /* ── GALLERY ── */
+      .gallery-grid {
+        columns: 2;
+        column-gap: 0.75rem;
+      }
+
+      @media (min-width: 768px) {
+        .gallery-grid {
+          columns: 3;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .gallery-grid {
+          columns: 4;
+        }
+      }
+
+      .gallery-item {
+        break-inside: avoid;
+        margin-bottom: 0.75rem;
+        border-radius: 1rem;
+        overflow: hidden;
+        display: block;
+        cursor: zoom-in;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        display: block;
+        transition: transform 0.5s ease, filter 0.3s ease;
+        filter: grayscale(20%);
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.04);
+        filter: grayscale(0%);
+      }
+
+      /* ── BEFORE/AFTER SLIDER ── */
+      .ba-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        user-select: none;
+      }
+
+      .ba-after {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      .ba-after img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .ba-before img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .ba-handle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--color-accent);
+        cursor: ew-resize;
+        z-index: 10;
+      }
+
+      .ba-handle::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: var(--color-accent);
+        box-shadow: 0 0 20px rgba(201, 168, 76, 0.6);
+      }
+
+      .ba-handle::after {
+        content: '◀ ▶';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #000;
+        font-size: 0.65rem;
+        font-weight: 800;
+        white-space: nowrap;
+        z-index: 11;
+      }
+
+      /* ── OPEN/CLOSED BADGE ── */
+      #open-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 0.25rem 0.8rem;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      #open-badge.open {
+        background: rgba(34, 197, 94, 0.15);
+        color: #22c55e;
+        border: 1px solid rgba(34, 197, 94, 0.3);
+      }
+
+      #open-badge.closed {
+        background: rgba(239, 68, 68, 0.12);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+      }
+
+      #badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      #open-badge.open #badge-dot {
+        background: #22c55e;
+        animation: pulse-dot 2s ease-in-out infinite;
+      }
+
+      #open-badge.closed #badge-dot {
+        background: #ef4444;
+      }
+
       @keyframes pulse-dot {
-        0%,        100% {          opacity: 1;          transform: scale(1);        }
-        50% {          opacity: 0.5;          transform: scale(1.5);        }      }
-      /* ── CTA BUTTON ── */      .btn-gold {        background: linear-gradient(135deg, #C9A84C 0%, #F5D98B 50%, #C9A84C 100%);        color: #000;        font-weight: 700;        letter-spacing: 0.06em;        border-radius: 0.5rem;        transition: filter 0.25s ease, transform 0.25s ease;        display: inline-flex;        align-items: center;        gap: 0.5rem;      }
-      .btn-gold:hover {        filter: brightness(1.15);        transform: translateY(-2px);      }
-      .btn-outline {        border: 1.5px solid var(--color-accent);        color: var(--color-accent);        font-weight: 600;        letter-spacing: 0.06em;        border-radius: 0.5rem;        transition: background 0.25s ease, color 0.25s ease;        display: inline-flex;        align-items: center;        gap: 0.5rem;      }
-      .btn-outline:hover {        background: var(--color-accent);        color: #000;      }
-      /* ── MOBILE MENU ── */      #mobile-menu {        display: none;        flex-direction: column;        background: rgba(10, 10, 10, 0.98);        border-top: 1px solid var(--color-border);        padding: 1.5rem;        gap: 1.2rem;      }
-      #mobile-menu.open {        display: flex;      }
-      #mobile-menu a {        color: var(--color-text);        font-weight: 500;        font-size: 1.1rem;        transition: color 0.2s;      }
-      #mobile-menu a:hover {        color: var(--color-accent);      }
-      /* ── SECTION ── */      section {        padding: 5rem 0;      }
-      .section-label {        font-size: 0.72rem;        font-weight: 700;        letter-spacing: 0.2em;        text-transform: uppercase;        color: var(--color-accent);        margin-bottom: 0.6rem;      }
-      /* ── INPUT ── */      input,      textarea,      select {        background: #1a1a1a;        border: 1px solid var(--color-border);        color: var(--color-text);        border-radius: 0.5rem;        width: 100%;        padding: 0.75rem 1rem;        font-size: 0.95rem;        transition: border-color 0.2s;        outline: none;        font-family: inherit;      }
-      input:focus,      textarea:focus,      select:focus {        border-color: var(--color-accent);      }
-      label {        font-size: 0.85rem;        color: var(--color-muted);        margin-bottom: 0.3rem;        display: block;      }
-      /* ── DIVIDER ── */      .gold-divider {        width: 3rem;        height: 3px;        background: linear-gradient(90deg, var(--color-accent), transparent);        margin-bottom: 1.5rem;      }
-      /* ── FOOTER ── */      footer {        background: #070707;        border-top: 1px solid var(--color-border);      }    </style>  </head>  <body>    <!-- ═══════════════════════════════════════════════════════     NAVBAR═══════════════════════════════════════════════════════ -->    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" aria-label="Κύρια πλοήγηση">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="flex items-center justify-between h-18 py-4">          <!-- Logo -->          <a href="#hero" class="flex items-center gap-3" aria-label="Olympus Fitness – Αρχική">            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#C9A84C,#F5D98B);">              <span class="font-display text-black text-xl leading-none">OF</span>            </div>            <div class="leading-tight">              <div class="font-display text-xl tracking-widest gold-text">OLYMPUS</div>              <div class="text-xs text-gray-400 tracking-[0.2em] uppercase" style="margin-top:-2px;">FITNESS</div>            </div>          </a>          <!-- Desktop Nav -->          <ul class="hidden lg:flex items-center gap-8 text-sm font-medium tracking-wide" role="list">            <li>              <a href="#services" class="text-gray-300 hover:text-yellow-400 transition-colors">Προγράμματα</a>            </li>            <li>              <a href="#pricing" class="text-gray-300 hover:text-yellow-400 transition-colors">Συνδρομές</a>            </li>            <li>              <a href="#gallery" class="text-gray-300 hover:text-yellow-400 transition-colors">Χώρος</a>            </li>            <li>              <a href="#team" class="text-gray-300 hover:text-yellow-400 transition-colors">Team</a>            </li>            <li>              <a href="#faq" class="text-gray-300 hover:text-yellow-400 transition-colors">FAQ</a>            </li>            <li>              <a href="#contact" class="text-gray-300 hover:text-yellow-400 transition-colors">Επικοινωνία</a>            </li>          </ul>          <!-- CTA + Badge -->          <div class="hidden lg:flex items-center gap-4">            <span id="open-badge" role="status" aria-live="polite">              <span id="badge-dot"></span>              <span id="badge-text">–</span>            </span>            <a href="#contact" class="btn-gold px-5 py-2.5 text-sm">Δωρεάν Δοκιμή →</a>          </div>          <!-- Hamburger -->          <button id="menu-toggle" class="lg:hidden flex flex-col gap-1.5 p-2" aria-label="Άνοιγμα μενού" aria-expanded="false" aria-controls="mobile-menu">            <span class="w-6 h-0.5 bg-white block transition-all" id="ham1"></span>            <span class="w-6 h-0.5 bg-white block transition-all" id="ham2"></span>            <span class="w-4 h-0.5 bg-yellow-400 block transition-all ml-auto" id="ham3"></span>          </button>        </div>      </div>      <!-- Mobile Menu -->      <div id="mobile-menu" role="navigation" aria-label="Μενού κινητού">        <a href="#services" onclick="closeMobileMenu()">Προγράμματα</a>        <a href="#pricing" onclick="closeMobileMenu()">Συνδρομές</a>        <a href="#gallery" onclick="closeMobileMenu()">Χώρος</a>        <a href="#team" onclick="closeMobileMenu()">Team</a>        <a href="#faq" onclick="closeMobileMenu()">FAQ</a>        <a href="#contact" onclick="closeMobileMenu()">Επικοινωνία</a>        <a href="#contact" class="btn-gold px-5 py-3 text-center rounded-lg text-sm mt-2" onclick="closeMobileMenu()">Δωρεάν Δοκιμή →</a>      </div>    </nav>    <!-- ═══════════════════════════════════════════════════════     HERO═══════════════════════════════════════════════════════ -->    <section id="hero" class="hero-section flex flex-col justify-center" aria-label="Κύρια παρουσίαση">      <!-- Background Image -->      <div class="hero-bg">        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&h=900&fit=crop" loading="lazy" alt="Olympus Fitness – Χώρος γυμναστηρίου" />      </div>      <!-- Dark Overlay -->      <div class="hero-overlay"></div>      <!-- Typographic Texture -->      <div class="hero-texture" aria-hidden="true">        <div class="hero-texture-text"> OLYMPUS <br>FITNESS <br>POWER </div>      </div>      <!-- Content -->      <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 w-full pt-28 pb-16">        <div class="max-w-3xl">          <div class="section-label mb-4">Θεσσαλονίκη · Από το 2010</div>          <h1 class="font-display text-6xl sm:text-7xl md:text-8xl xl:text-9xl leading-none mb-6">            <span class="gold-text">ΞΕΠΕΡΑΣΕ</span>            <br>            <span class="text-white">ΤΑ ΟΡΙΑ</span>            <br>            <span style="color:rgba(255,255,255,0.25)">ΣΟΥ</span>          </h1>          <p class="text-gray-300 text-lg md:text-xl max-w-xl mb-8 leading-relaxed font-light"> Το <strong class="text-white font-semibold">Olympus Fitness</strong> είναι ο χώρος που ο δυναμικός σου εαυτός περίμενε. Κορυφαίος εξοπλισμός, πιστοποιημένοι coaches και ένα community που σε ωθεί κάθε μέρα πιο ψηλά. </p>          <div class="flex flex-wrap gap-4 mb-12">            <a href="#contact" class="btn-gold px-7 py-4 text-base rounded-lg"> Ξεκίνα Δωρεάν → </a>            <a href="#services" class="btn-outline px-7 py-4 text-base rounded-lg"> Τα Προγράμματά μας </a>          </div>          <!-- Mini trust -->          <div class="flex flex-wrap items-center gap-6 text-sm text-gray-400">            <div class="flex items-center gap-2">              <span class="stars text-base">★★★★★</span>              <span>                <strong class="text-white">4.9</strong> (340 κριτικές) </span>            </div>            <div class="flex items-center gap-2">              <span style="color:var(--color-accent)">✓</span>              <span>+2.400 ενεργά μέλη</span>            </div>            <div class="flex items-center gap-2">              <span style="color:var(--color-accent)">✓</span>              <span>15 χρόνια λειτουργίας</span>            </div>          </div>        </div>      </div>      <!-- Scroll hint -->      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-50" aria-hidden="true">        <span class="text-xs text-gray-400 tracking-widest uppercase">Scroll</span>        <div class="w-0.5 h-8 bg-gradient-to-b from-yellow-500 to-transparent animate-bounce"></div>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     TRUST STRIP═══════════════════════════════════════════════════════ -->    <div class="trust-strip py-4" aria-label="Σύντομη παρουσίαση">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10 text-sm text-gray-300">          <div class="flex items-center gap-2">            <span style="color:var(--color-accent)" class="text-lg">🏆</span>            <span>Best Gym Thessaloniki 2023</span>          </div>          <div class="w-px h-4 bg-gray-700 hidden sm:block"></div>          <div class="flex items-center gap-2">            <span style="color:var(--color-accent)" class="text-lg">💪</span>            <span>Πιστοποιημένοι Personal Trainers</span>          </div>          <div class="w-px h-4 bg-gray-700 hidden sm:block"></div>          <div class="flex items-center gap-2">            <span style="color:var(--color-accent)" class="text-lg">📍</span>            <span>Κέντρο Θεσσαλονίκης</span>          </div>          <div class="w-px h-4 bg-gray-700 hidden sm:block"></div>          <div class="flex items-center gap-2">            <span style="color:var(--color-accent)" class="text-lg">🔥</span>            <span>Πρόγραμμα 7 ημερών δωρεάν</span>          </div>        </div>      </div>    </div>    <!-- ═══════════════════════════════════════════════════════     STATS BAR═══════════════════════════════════════════════════════ -->    <div class="stat-bar py-14" aria-label="Στατιστικά">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">          <div>            <div class="stat-number gold-text">15+</div>            <div class="text-gray-400 text-sm tracking-widest uppercase mt-1">Χρόνια Εμπειρίας</div>          </div>          <div>            <div class="stat-number gold-text">2.4K</div>            <div class="text-gray-400 text-sm tracking-widest uppercase mt-1">Ενεργά Μέλη</div>          </div>          <div>            <div class="stat-number gold-text">24</div>            <div class="text-gray-400 text-sm tracking-widest uppercase mt-1">Expert Coaches</div>          </div>          <div>            <div class="stat-number gold-text">340</div>            <div class="text-gray-400 text-sm tracking-widest uppercase mt-1">5★ Κριτικές</div>          </div>        </div>      </div>    </div>    <!-- ═══════════════════════════════════════════════════════     MARQUEE – PROGRAMS TICKER═══════════════════════════════════════════════════════ -->    <div class="marquee-wrapper py-5 border-y" style="border-color:var(--color-border);background:var(--color-bg2);" aria-hidden="true">      <div class="marquee-track text-sm font-semibold tracking-widest uppercase" style="color:var(--color-muted);">        <!-- Repeat twice for seamless loop -->        <span style="color:var(--color-accent)">★</span> CrossFit <span style="color:var(--color-accent)">★</span> Personal Training <span style="color:var(--color-accent)">★</span> Yoga &amp; Pilates <span style="color:var(--color-accent)">★</span> Boxing <span style="color:var(--color-accent)">★</span> Strength &amp; Conditioning <span style="color:var(--color-accent)">★</span> HIIT <span style="color:var(--color-accent)">★</span> Spinning <span style="color:var(--color-accent)">★</span> Nutrition Coaching <span style="color:var(--color-accent)">★</span> Recovery &amp; Stretch <span style="color:var(--color-accent)">★</span> CrossFit <span style="color:var(--color-accent)">★</span> Personal Training <span style="color:var(--color-accent)">★</span> Yoga &amp; Pilates <span style="color:var(--color-accent)">★</span> Boxing <span style="color:var(--color-accent)">★</span> Strength &amp; Conditioning <span style="color:var(--color-accent)">★</span> HIIT <span style="color:var(--color-accent)">★</span> Spinning <span style="color:var(--color-accent)">★</span> Nutrition Coaching <span style="color:var(--color-accent)">★</span> Recovery &amp; Stretch      </div>    </div>    <!-- ═══════════════════════════════════════════════════════     SERVICES═══════════════════════════════════════════════════════ -->    <section id="services" aria-labelledby="services-heading">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="text-center mb-14">          <div class="section-label">Τι Προσφέρουμε</div>          <h2 id="services-heading" class="font-display text-5xl md:text-6xl text-white"> ΤΑ ΠΡΟΓΡΑΜΜΑΤΑ <br>            <span class="gold-text">ΜΑΣ</span>          </h2>          <p class="text-gray-400 mt-4 max-w-xl mx-auto"> Από αρχάριους έως επαγγελματίες αθλητές — έχουμε το πρόγραμμα που ταιριάζει στους στόχους σου. </p>        </div>        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">          <!-- Card 1: CrossFit -->          <article class="service-card" aria-label="CrossFit">            <div class="card-img">              <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&h=400&fit=crop" loading="lazy" alt="CrossFit προπόνηση" />              <span class="card-badge">Δημοφιλές</span>            </div>            <div class="p-6">              <h3 class="font-display text-2xl text-white mb-2">CrossFit WOD</h3>              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Υψηλής έντασης λειτουργική προπόνηση για μέγιστα αποτελέσματα. Ομαδικά sessions με certified L2 coaches. </p>              <div class="flex items-center justify-between">                <span class="text-yellow-400 font-bold text-lg">από 45€/μήνα</span>                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>              </div>            </div>          </article>          <!-- Card 2: Personal Training -->          <article class="service-card" aria-label="Personal Training">            <div class="card-img">              <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop" loading="lazy" alt="Personal Training" />              <span class="card-badge">Premium</span>            </div>            <div class="p-6">              <h3 class="font-display text-2xl text-white mb-2">Personal Training</h3>              <p class="text-gray-400 text-sm leading-relaxed mb-4"> 1-on-1 προπόνηση με εξατομικευμένο πλάνο, διατροφική καθοδήγηση και tracking προόδου ανά εβδομάδα. </p>              <div class="flex items-center justify-between">                <span class="text-yellow-400 font-bold text-lg">από 35€/session</span>                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>              </div>            </div>          </article>          <!-- Card 3: Yoga & Pilates -->          <article class="service-card" aria-label="Yoga και Pilates">            <div class="card-img">              <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&h=400&fit=crop" loading="lazy" alt="Yoga και Pilates" />            </div>            <div class="p-6">              <h3 class="font-display text-2xl text-white mb-2">Yoga &amp; Pilates</h3>              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Ευελιξία, ισορροπία και εσωτερική ηρεμία. Ιδανικό συμπλήρωμα για κάθε τύπο προπόνησης. </p>              <div class="flex items-center justify-between">                <span class="text-yellow-400 font-bold text-lg">από 35€/μήνα</span>                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>              </div>            </div>          </article>          <!-- Card 4: Boxing -->          <article class="service-card" aria-label="Boxing">            <div class="card-img">              <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&h=400&fit=crop" loading="lazy" alt="Boxing προπόνηση" />            </div>            <div class="p-6">              <h3 class="font-display text-2xl text-white mb-2">Boxing</h3>              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Τεχνική, ταχύτητα και αγωνιστικό πνεύμα. Ανοιχτό σε όλα τα επίπεδα — από αρχάριους έως αγωνιζόμενους. </p>              <div class="flex items-center justify-between">                <span class="text-yellow-400 font-bold text-lg">από 40€/μήνα</span>                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>              </div>            </div>          </article>          <!-- Card 5: HIIT Cardio -->          <article class="service-card" aria-label="HIIT Cardio">            <div class="card-img">              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=400&fit=crop" loading="lazy" alt="HIIT Cardio προπόνηση" />              <span class="card-badge">Νέο</span>            </div>            <div class="p-6">              <h3 class="font-display text-2xl text-white mb-2">HIIT Cardio</h3>              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Καύση λίπους σε χρόνο ρεκόρ. Διαστηματική προπόνηση υψηλής έντασης με μουσική και ατμόσφαιρα που σε εκτοξεύει. </p>              <div class="flex items-center justify-between">                <span class="text-yellow-400 font-bold text-lg">Included</span>                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>              </div>            </div>          </article>          <!-- Card 6: Nutrition Coaching -->          <article class="service-card" aria-label="Διατροφική Καθοδήγηση">            <div class="card-img">              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop" loading="lazy" alt="Διατροφική καθοδήγηση" />            </div>            <div class="p-6">              <h3 class="font-display text-2xl text-white mb-2">Nutrition Coaching</h3>              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Εξατομικευμένο διατροφικό πλάνο από πιστοποιημένους διατροφολόγους. Η σωστή τροφή είναι το μισό αποτέλεσμα. </p>              <div class="flex items-center justify-between">                <span class="text-yellow-400 font-bold text-lg">από 50€</span>                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>              </div>            </div>          </article>        </div>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     BEFORE / AFTER SLIDER═══════════════════════════════════════════════════════ -->    <section style="background:var(--color-bg2);" aria-labelledby="ba-heading">      <div class="max-w-5xl mx-auto px-4 sm:px-6">        <div class="text-center mb-12">          <div class="section-label">Αποτελέσματα</div>          <h2 id="ba-heading" class="font-display text-5xl md:text-6xl text-white"> ΠΡΙΝ &amp; <span class="gold-text">ΜΕΤΑ</span>          </h2>          <p class="text-gray-400 mt-3">Σύρε το slider και δες τη διαφορά.</p>        </div>        <div class="ba-container max-w-3xl mx-auto" id="ba-container" aria-label="Σύγκριση πριν και μετά">          <!-- Before -->          <div class="ba-before" style="height:420px;">            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&h=420&fit=crop" loading="lazy" alt="Πριν την προπόνηση" />          </div>          <!-- After (top layer) -->          <div class="ba-after" id="ba-after" style="width:50%;">            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&h=420&fit=crop" loading="lazy" alt="Μετά την προπόνηση" style="width:900px; max-width:none;" />          </div>          <!-- Handle -->          <div class="ba-handle" id="ba-handle" style="left:50%;" role="slider" aria-label="Slider σύγκρισης" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>          <!-- Labels -->          <div class="absolute top-4 left-4 z-20 text-xs font-bold uppercase tracking-widest                 bg-black/50 text-gray-300 px-3 py-1 rounded-full pointer-events-none" aria-hidden="true">Πριν</div>          <div class="absolute top-4 right-4 z-20 text-xs font-bold uppercase tracking-widest                 bg-black/50 px-3 py-1 rounded-full pointer-events-none" style="color:var(--color-accent);" aria-hidden="true">Μετά</div>        </div>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     PROCESS TIMELINE═══════════════════════════════════════════════════════ -->    <section aria-labelledby="process-heading">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="text-center mb-14">          <div class="section-label">Πώς Ξεκινάς</div>          <h2 id="process-heading" class="font-display text-5xl md:text-6xl text-white"> 4 ΒΗΜΑΤΑ ΠΡΟΣ <br>            <span class="gold-text">ΤΟΝ ΣΤΟΧΟ ΣΟΥ</span>          </h2>        </div>        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">          <!-- Connecting line (desktop) -->          <div class="step-line absolute top-8 left-[12.5%] right-[12.5%] h-0.5 hidden md:block" style="background:linear-gradient(90deg, transparent, var(--color-accent), transparent);" aria-hidden="true"></div>          <!-- Step 1 -->          <div class="text-center relative">            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 z-10 relative" style="background:linear-gradient(135deg,#C9A84C,#F5D98B); color:#000;">              <span class="font-display text-2xl">01</span>            </div>            <h3 class="font-bold text-white mb-2">Δωρεάν Αξιολόγηση</h3>            <p class="text-gray-400 text-sm leading-relaxed"> Έρχεσαι για ένα δωρεάν session με coach. Μαζί ορίζουμε τους στόχους σου. </p>          </div>          <!-- Step 2 -->          <div class="text-center relative">            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 z-10 relative" style="background:var(--color-bg3); border:2px solid var(--color-accent); color:var(--color-accent);">              <span class="font-display text-2xl">02</span>            </div>            <h3 class="font-bold text-white mb-2">Εξατομικευμένο Πλάνο</h3>            <p class="text-gray-400 text-sm leading-relaxed"> Δημιουργούμε πρόγραμμα προπόνησης και διατροφής ειδικά για σένα. </p>          </div>          <!-- Step 3 -->          <div class="text-center relative">            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 z-10 relative" style="background:var(--color-bg3); border:2px solid var(--color-accent); color:var(--color-accent);">              <span class="font-display text-2xl">03</span>            </div>            <h3 class="font-bold text-white mb-2">Ξεκινάς Προπόνηση</h3>            <p class="text-gray-400 text-sm leading-relaxed"> Πρόσβαση σε όλες τις εγκαταστάσεις, τα ομαδικά και τον coach σου. </p>          </div>          <!-- Step 4 -->          <div class="text-center relative">            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 z-10 relative" style="background:var(--color-bg3); border:2px solid var(--color-accent); color:var(--color-accent);">              <span class="font-display text-2xl">04</span>            </div>            <h3 class="font-bold text-white mb-2">Tracking &amp; Αποτελέσματα</h3>            <p class="text-gray-400 text-sm leading-relaxed"> Μηνιαία αξιολόγηση, προσαρμογή στόχων και κοινή εκτίμηση της προόδου σου. </p>          </div>        </div>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     PRICING═══════════════════════════════════════════════════════ -->    <section id="pricing" style="background:var(--color-bg2);" aria-labelledby="pricing-heading">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="text-center mb-14">          <div class="section-label">Τιμολόγηση</div>          <h2 id="pricing-heading" class="font-display text-5xl md:text-6xl text-white"> ΣΥΝΔΡΟΜΕΣ <span class="gold-text">2025</span>          </h2>          <p class="text-gray-400 mt-3">Χωρίς κρυφές χρεώσεις. Ακύρωση οποτεδήποτε.</p>        </div>        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">          <!-- Starter -->          <div class="pricing-card p-8">            <div class="section-label mb-1">Starter</div>            <div class="price-num text-white">39 <span class="text-xl text-gray-400">€</span>            </div>            <div class="text-gray-400 text-sm mb-6">ανά μήνα</div>            <ul class="space-y-3 mb-8">              <li class="check-item">                <span class="check-icon">✓</span> Πρόσβαση σε αίθουσα βαρών              </li>              <li class="check-item">                <span class="check-icon">✓</span> Cardio zone (treadmills, bikes)              </li>              <li class="check-item">                <span class="check-icon">✓</span> 2 ομαδικά / εβδομάδα              </li>              <li class="check-item cross-item">                <span class="cross-icon">✗</span>                <span class="text-gray-500"> Personal Training</span>              </li>              <li class="check-item cross-item">                <span class="cross-icon">✗</span>                <span class="text-gray-500"> Nutrition Coaching</span>              </li>              <li class="check-item cross-item">                <span class="cross-icon">✗</span>                <span class="text-gray-500"> Sauna &amp; Recovery Zone</span>              </li>            </ul>            <a href="#contact" class="btn-outline w-full py-3 text-sm justify-center rounded-lg block text-center">Επιλογή Πλάνου</a>          </div>          <!-- Pro (popular) -->          <div class="pricing-card popular p-8 relative">            <div class="absolute -top-4 left-1/2 -translate-x-1/2">              <span class="popular-badge">Πιο Δημοφιλές</span>            </div>            <div class="section-label mb-1">Pro</div>            <div class="price-num gold-text">65 <span class="text-xl" style="color:var(--color-muted);">€</span>            </div>            <div class="text-gray-400 text-sm mb-6">ανά μήνα</div>            <ul class="space-y-3 mb-8">              <li class="check-item">                <span class="check-icon">✓</span> Όλα του Starter              </li>              <li class="check-item">                <span class="check-icon">✓</span> Απεριόριστα ομαδικά              </li>              <li class="check-item">                <span class="check-icon">✓</span> 2 PT sessions / μήνα              </li>              <li class="check-item">                <span class="check-icon">✓</span> Nutrition check-in              </li>              <li class="check-item">                <span class="check-icon">✓</span> Sauna &amp; Recovery Zone              </li>              <li class="check-item cross-item">                <span class="cross-icon">✗</span>                <span class="text-gray-500"> Unlimited PT</span>              </li>            </ul>            <a href="#contact" class="btn-gold w-full py-3 text-sm justify-center rounded-lg block text-center">Επιλογή Πλάνου</a>          </div>          <!-- Elite -->          <div class="pricing-card p-8">            <div class="section-label mb-1">Elite</div>            <div class="price-num text-white">99 <span class="text-xl text-gray-400">€</span>            </div>            <div class="text-gray-400 text-sm mb-6">ανά μήνα</div>            <ul class="space-y-3 mb-8">              <li class="check-item">                <span class="check-icon">✓</span> Όλα του Pro              </li>              <li class="check-item">                <span class="check-icon">✓</span> Unlimited PT sessions              </li>              <li class="check-item">                <span class="check-icon">✓</span> Μηνιαίο Nutrition Plan              </li>              <li class="check-item">                <span class="check-icon">✓</span> Κράτηση κατά προτεραιότητα              </li>              <li class="check-item">                <span class="check-icon">✓</span> Απεριόριστη Sauna &amp; Spa              </li>              <li class="check-item">                <span class="check-icon">✓</span> Guest pass 2x/μήνα              </li>            </ul>            <a href="#contact" class="btn-outline w-full py-3 text-sm justify-center rounded-lg block text-center">Επιλογή Πλάνου</a>          </div>        </div>        <p class="text-center text-gray-500 text-sm mt-8"> * Φοιτητική και επαγγελματική κάρτα με <strong class="text-yellow-400">20% έκπτωση</strong>. Ετήσια συνδρομή με επιπλέον <strong class="text-yellow-400">2 μήνες δώρο</strong>. </p>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     REVIEWS═══════════════════════════════════════════════════════ -->    <section aria-labelledby="reviews-heading">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="text-center mb-14">          <div class="section-label">Τι Λένε τα Μέλη</div>          <h2 id="reviews-heading" class="font-display text-5xl md:text-6xl text-white"> ΚΡΙΤΙΚΕΣ <span class="gold-text">ΜΕΛΩΝ</span>          </h2>          <div class="flex items-center justify-center gap-3 mt-4">            <div class="stars text-2xl">★★★★★</div>            <span class="text-gray-300 font-semibold text-xl">4.9</span>            <span class="text-gray-500">— 340 κριτικές στο Google</span>          </div>        </div>        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">          <blockquote class="review-card p-6">            <div class="stars text-sm mb-3">★★★★★</div>            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Τρία χρόνια μέλος και δεν αλλάζω. Οι coaches είναι απολύτως επαγγελματίες, πάντα διαθέσιμοι, και τα αποτελέσματα μιλάνε από μόνα τους. Από 92 κιλά στα 78 σε 5 μήνες." </p>            <footer class="flex items-center gap-3">              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Νίκου Π." class="w-10 h-10 rounded-full object-cover" />              <div>                <cite class="text-white text-sm font-semibold not-italic">Νίκος Π.</cite>                <div class="text-gray-500 text-xs">Τριανδρία, Θεσσαλονίκη</div>              </div>            </footer>          </blockquote>          <blockquote class="review-card p-6" style="border-color:rgba(201,168,76,0.25); background:linear-gradient(160deg,#1a180a,#1A1A1A);">            <div class="stars text-sm mb-3">★★★★★</div>            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Το καλύτερο γυμναστήριο που έχω πατήσει στη Θεσσαλονίκη. Ο εξοπλισμός είναι top και η ατμόσφαιρα εντελώς διαφορετική από τα υπόλοιπα. Το μάθημα Yoga του Κυριάκου είναι must!" </p>            <footer class="flex items-center gap-3">              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Μαρίας Κ." class="w-10 h-10 rounded-full object-cover" />              <div>                <cite class="text-white text-sm font-semibold not-italic">Μαρία Κ.</cite>                <div class="text-gray-500 text-xs">Άνω Πόλη, Θεσσαλονίκη</div>              </div>            </footer>          </blockquote>          <blockquote class="review-card p-6">            <div class="stars text-sm mb-3">★★★★★</div>            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Επαγγελματίας αθλητής εδώ και 10 χρόνια — μετά τον τραυματισμό μου ξεκίνησα Personal Training εδώ. Η αποκατάσταση ήταν εκπληκτική. Ξέρουν αυτό που κάνουν." </p>            <footer class="flex items-center gap-3">              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Δημήτρη Σ." class="w-10 h-10 rounded-full object-cover" />              <div>                <cite class="text-white text-sm font-semibold not-italic">Δημήτρης Σ.</cite>                <div class="text-gray-500 text-xs">Καλαμαριά, Θεσσαλονίκη</div>              </div>            </footer>          </blockquote>          <blockquote class="review-card p-6">            <div class="stars text-sm mb-3">★★★★★</div>            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Ξεκίνησα με CrossFit χωρίς καμία προηγούμενη εμπειρία. Σε 2 εβδομάδες ένιωθα σαν να προπονούμουν χρόνια. Η ομάδα σε αγκαλιάζει από την πρώτη κιόλας μέρα." </p>            <footer class="flex items-center gap-3">              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Ελένης Τ." class="w-10 h-10 rounded-full object-cover" />              <div>                <cite class="text-white text-sm font-semibold not-italic">Ελένη Τ.</cite>                <div class="text-gray-500 text-xs">Συκιές, Θεσσαλονίκη</div>              </div>            </footer>          </blockquote>          <blockquote class="review-card p-6">            <div class="stars text-sm mb-3">★★★★★</div>            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Έχω δοκιμάσει 4 γυμναστήρια στη Θεσσαλονίκη. Το Olympus Fitness δεν συγκρίνεται. Ο εξοπλισμός, η καθαριότητα, οι προπονητές — όλα σε άλλο επίπεδο." </p>            <footer class="flex items-center gap-3">              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Κώστα Μ." class="w-10 h-10 rounded-full object-cover" />              <div>                <cite class="text-white text-sm font-semibold not-italic">Κώστας Μ.</cite>                <div class="text-gray-500 text-xs">Εύοσμος, Θεσσαλονίκη</div>              </div>            </footer>          </blockquote>          <blockquote class="review-card p-6">            <div class="stars text-sm mb-3">★★★★☆</div>            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Κορυφαίο επίπεδο PT sessions. Η Αναστασία μου άλλαξε εντελώς τη σχέση μου με το σώμα μου. Μόνο ένα αστεράκι λιγότερο γιατί το parking μπορεί να βελτιωθεί!" </p>            <footer class="flex items-center gap-3">              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Σοφίας Β." class="w-10 h-10 rounded-full object-cover" />              <div>                <cite class="text-white text-sm font-semibold not-italic">Σοφία Β.</cite>                <div class="text-gray-500 text-xs">Νεάπολη, Θεσσαλονίκη</div>              </div>            </footer>          </blockquote>        </div>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     FOUNDER / TEAM═══════════════════════════════════════════════════════ -->    <section id="team" style="background:var(--color-bg2);" aria-labelledby="team-heading">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">          <!-- Text Side -->          <div>            <div class="section-label">Η Ομάδα μας</div>            <h2 id="team-heading" class="font-display text-5xl md:text-6xl text-white leading-none mb-6"> ΑΝΘΡΩΠΟΙ <br>ΠΟΥ <span class="gold-text">ΖΟΥΝ</span>              <br>ΤΗΝ ΠΡΟΠΟΝΗΣΗ            </h2>            <div class="gold-divider"></div>            <p class="text-gray-400 leading-relaxed mb-6"> Ο <strong class="text-white">Αλέξανδρος Παπαδόπουλος</strong>, ιδρυτής του Olympus Fitness, ξεκίνησε ως αγωνιστικός weightlifter. Με BSc Αθλητικής Επιστήμης και 15 χρόνια coaching εμπειρία, έφτιαξε το γυμναστήριο που ήθελε να υπάρχει στη Θεσσαλονίκη. </p>            <ul class="space-y-3 mb-8">              <li class="flex items-start gap-3 text-gray-300 text-sm">                <span style="color:var(--color-accent)" class="mt-0.5 flex-shrink-0">✦</span>                <span>BSc Αθλητικής Επιστήμης – Α.Π.Θ.</span>              </li>              <li class="flex items-start gap-3 text-gray-300 text-sm">                <span style="color:var(--color-accent)" class="mt-0.5 flex-shrink-0">✦</span>                <span>NSCA-CPT Πιστοποίηση (Certified Personal Trainer)</span>              </li>              <li class="flex items-start gap-3 text-gray-300 text-sm">                <span style="color:var(--color-accent)" class="mt-0.5 flex-shrink-0">✦</span>                <span>CrossFit Level 2 Trainer (CF-L2)</span>              </li>              <li class="flex items-start gap-3 text-gray-300 text-sm">                <span style="color:var(--color-accent)" class="mt-0.5 flex-shrink-0">✦</span>                <span>Ομάδα 24 πιστοποιημένων coaches σε 8 ειδικότητες</span>              </li>            </ul>            <a href="#contact" class="btn-gold px-6 py-3 text-sm rounded-lg inline-flex"> Γνώρισε την Ομάδα → </a>          </div>          <!-- Photo Side -->          <div class="relative">            <div class="rounded-3xl overflow-hidden aspect-[4/5]" style="border:2px solid rgba(201,168,76,0.2);">              <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=600&h=750&fit=crop" loading="lazy" alt="Αλέξανδρος Παπαδόπουλος – Ιδρυτής Olympus Fitness" class="w-full h-full object-cover object-top" />            </div>            <!-- Floating badge -->            <div class="absolute -bottom-6 -left-6 rounded-2xl p-5 z-10" style="background:var(--color-bg3); border:1px solid rgba(201,168,76,0.3); box-shadow:0 20px 60px rgba(0,0,0,0.5);">              <div class="font-display text-4xl gold-text leading-none">15</div>              <div class="text-xs text-gray-400 uppercase tracking-widest mt-1">Χρόνια <br>Εμπειρίας </div>            </div>          </div>        </div>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     GALLERY═══════════════════════════════════════════════════════ -->    <section id="gallery" aria-labelledby="gallery-heading">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="text-center mb-14">          <div class="section-label">Ο Χώρος μας</div>          <h2 id="gallery-heading" class="font-display text-5xl md:text-6xl text-white"> ΕΓΚΑΤΑΣΤΑΣΕΙΣ <span class="gold-text">ΕΠΙΠΕΔΟΥ</span>          </h2>          <p class="text-gray-400 mt-3">2.000 τ.μ. premium χώρου στο κέντρο της Θεσσαλονίκης.</p>        </div>        <div class="gallery-grid" role="list" aria-label="Εικόνες εγκαταστάσεων">          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Αίθουσα βαρών">            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=800&fit=crop" loading="lazy" alt="Αίθουσα βαρών" />          </a>          <a href="#gallery" class="gallery-item" role="listitem" aria-label="CrossFit Box">            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&h=400&fit=crop" loading="lazy" alt="CrossFit Box" />          </a>          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Cardio zone">            <img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=600&h=600&fit=crop" loading="lazy" alt="Cardio zone" />          </a>          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Yoga studio">            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=400&fit=crop" loading="lazy" alt="Yoga studio" />          </a>          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Boxing ring">            <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&h=700&fit=crop" loading="lazy" alt="Boxing ring" />          </a>          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Αποδυτήρια premium">            <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=600&h=400&fit=crop" loading="lazy" alt="Premium αποδυτήρια" />          </a>          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Sauna zone">            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=500&fit=crop" loading="lazy" alt="Sauna zone" />          </a>          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Functional training zone">            <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&h=900&fit=crop" loading="lazy" alt="Functional training zone" />          </a>        </div>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     FAQ═══════════════════════════════════════════════════════ -->    <section id="faq" style="background:var(--color-bg2);" aria-labelledby="faq-heading">      <div class="max-w-3xl mx-auto px-4 sm:px-6">        <div class="text-center mb-12">          <div class="section-label">Απορίες</div>          <h2 id="faq-heading" class="font-display text-5xl md:text-6xl text-white"> ΣΥΧΝΕΣ <span class="gold-text">ΕΡΩΤΗΣΕΙΣ</span>          </h2>        </div>        <div role="list">          <div class="faq-item" role="listitem">            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">              <span>Χρειάζομαι εμπειρία για να εγγραφώ;</span>              <span class="faq-icon" aria-hidden="true">+</span>            </button>            <div class="faq-answer"> Καθόλου! Τo Olympus Fitness δέχεται μέλη από κάθε επίπεδο — από απόλυτους αρχάριους έως έμπειρους αθλητές. Η δωρεάν αρχική αξιολόγηση με coach διασφαλίζει ότι ξεκινάς σωστά και με ασφάλεια. </div>          </div>          <div class="faq-item" role="listitem">            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">              <span>Τι περιλαμβάνει η δωρεάν εβδομάδα δοκιμής;</span>              <span class="faq-icon" aria-hidden="true">+</span>            </button>            <div class="faq-answer"> Πλήρης πρόσβαση στον χώρο, σε όλα τα ομαδικά προγράμματα, στο cardio zone και στο functional training area. Επίσης, ένα 30λεπτο δωρεάν session με personal trainer για να αξιολογηθούν οι στόχοι σου. </div>          </div>          <div class="faq-item" role="listitem">            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">              <span>Υπάρχουν δεσμεύσεις σύμβασης;</span>              <span class="faq-icon" aria-hidden="true">+</span>            </button>            <div class="faq-answer"> Οι μηνιαίες συνδρομές είναι χωρίς δέσμευση — ακύρωση οποτεδήποτε με 15 ημέρες προειδοποίηση. Οι ετήσιες συνδρομές προσφέρουν 2 μήνες δώρο και σταθερή τιμή. </div>          </div>          <div class="faq-item" role="listitem">            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">              <span>Τι ωράριο λειτουργίας έχετε;</span>              <span class="faq-icon" aria-hidden="true">+</span>            </button>            <div class="faq-answer"> Δευτέρα–Παρασκευή: 06:30–22:00 | Σάββατο: 08:00–20:00 | Κυριακή: 09:00–17:00. Τα Elite μέλη έχουν πρόσβαση μέσω κάρτας 24/7. </div>          </div>          <div class="faq-item" role="listitem">            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">              <span>Πού βρίσκεστε και υπάρχει parking;</span>              <span class="faq-icon" aria-hidden="true">+</span>            </button>            <div class="faq-answer"> Βρισκόμαστε στην Εγνατία 147, κοντά στο κέντρο της Θεσσαλονίκης. Εξυπηρετούμαστε από ΜΜΜ (στάση Βενιζέλου, 5 λεπτά με τα πόδια). Δημόσιο parking βρίσκεται στην Πλατεία Δημοκρατίας σε απόσταση 3 λεπτών. </div>          </div>          <div class="faq-item" role="listitem">            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">              <span>Προσφέρετε εταιρικά πακέτα;</span>              <span class="faq-icon" aria-hidden="true">+</span>            </button>            <div class="faq-answer"> Ναι! Εταιρικές συνδρομές από 5 άτομα και πάνω με ειδικές τιμές, εκπτώσεις και δυνατότητα ομαδικών sessions wellness στον χώρο σας. Επικοινωνήστε μαζί μας για εξατομικευμένη προσφορά. </div>          </div>        </div>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     CONTACT + MAP═══════════════════════════════════════════════════════ -->    <section id="contact" aria-labelledby="contact-heading">      <div class="max-w-7xl mx-auto px-4 sm:px-6">        <div class="text-center mb-14">          <div class="section-label">Επικοινωνία</div>          <h2 id="contact-heading" class="font-display text-5xl md:text-6xl text-white"> ΞΕΚΙΝΑ <span class="gold-text">ΣΗΜΕΡΑ</span>          </h2>          <p class="text-gray-400 mt-3">Συμπλήρωσε τη φόρμα και θα επικοινωνήσουμε εντός 2 ωρών.</p>        </div>        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">          <!-- Form -->          <div class="rounded-3xl p-8" style="background:var(--color-bg3); border:1px solid var(--color-border);">            <h3 class="font-display text-2xl text-white mb-6 tracking-wide">ΦΟΡΜΑ ΕΓΓΡΑΦΗΣ</h3>            <form onsubmit="handleFormSubmit(event)" novalidate aria-label="Φόρμα εγγραφής">              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">                <div>                  <label for="fname">Όνομα *</label>                  <input type="text" id="fname" name="fname" required autocomplete="given-name" placeholder="π.χ. Νίκος" aria-required="true" />                </div>                <div>                  <label for="lname">Επώνυμο *</label>                  <input type="text" id="lname" name="lname" required autocomplete="family-name" placeholder="π.χ. Παπαδόπουλος" aria-required="true" />                </div>              </div>              <div class="mb-4">                <label for="email">Email *</label>                <input type="email" id="email" name="email" required autocomplete="email" placeholder="email@example.com" aria-required="true" />              </div>              <div class="mb-4">                <label for="phone">Τηλέφωνο</label>                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="69X XXX XXXX" />              </div>              <div class="mb-4">                <label for="program">Ενδιαφέρον Πρόγραμμα</label>                <select id="program" name="program">                  <option value="">-- Επίλεξε πρόγραμμα --</option>                  <option value="crossfit">CrossFit WOD</option>                  <option value="pt">Personal Training</option>                  <option value="yoga">Yoga &amp; Pilates</option>                  <option value="boxing">Boxing</option>                  <option value="hiit">HIIT Cardio</option>                  <option value="nutrition">Nutrition Coaching</option>                  <option value="other">Άλλο</option>                </select>              </div>              <div class="mb-6">                <label for="message">Μήνυμα (προαιρετικό)</label>                <textarea id="message" name="message" rows="3" placeholder="Πες μας λίγα λόγια για τους στόχους σου..."></textarea>              </div>              <button type="submit" class="btn-gold w-full py-4 text-base rounded-xl justify-center"> Στείλε Αίτηση Δωρεάν Δοκιμής → </button>              <p class="text-gray-500 text-xs text-center mt-3"> Δεν στέλνουμε spam. Τα δεδομένα σου προστατεύονται. </p>            </form>            <!-- Success message (hidden by default) -->            <div id="form-success" class="hidden text-center py-8">              <div class="text-5xl mb-4">🏆</div>              <h3 class="font-display text-2xl text-white mb-2">ΕΥΧΑΡΙΣΤΟΥΜΕ!</h3>              <p class="text-gray-400">Θα επικοινωνήσουμε μαζί σου εντός 2 ωρών.</p>            </div>          </div>          <!-- Info + Map -->          <div class="flex flex-col gap-6">            <!-- Info cards -->            <div class="grid grid-cols-2 gap-4">              <div class="rounded-2xl p-5" style="background:var(--color-bg3); border:1px solid var(--color-border);">                <div class="text-2xl mb-2">📍</div>                <div class="text-white text-sm font-semibold mb-1">Διεύθυνση</div>                <div class="text-gray-400 text-sm">Εγνατία 147 <br>Θεσσαλονίκη 546 35 </div>              </div>              <div class="rounded-2xl p-5" style="background:var(--color-bg3); border:1px solid var(--color-border);">                <div class="text-2xl mb-2">📞</div>                <div class="text-white text-sm font-semibold mb-1">Τηλέφωνο</div>                <a href="tel:+302310123456" class="text-yellow-400 text-sm hover:underline"> 2310 123 456 </a>              </div>              <div class="rounded-2xl p-5" style="background:var(--color-bg3); border:1px solid var(--color-border);">                <div class="text-2xl mb-2">🕐</div>                <div class="text-white text-sm font-semibold mb-1">Ωράριο</div>                <div class="text-gray-400 text-xs leading-relaxed"> Δε–Πα: 06:30–22:00 <br> Σάββατο: 08:00–20:00 <br> Κυριακή: 09:00–17:00 </div>              </div>              <div class="rounded-2xl p-5" style="background:var(--color-bg3); border:1px solid var(--color-border);">                <div class="text-2xl mb-2">✉️</div>                <div class="text-white text-sm font-semibold mb-1">Email</div>                <a href="mailto:info@olympusfitness.gr" class="text-yellow-400 text-sm hover:underline break-all"> info@olympusfitness.gr </a>              </div>            </div>            <!-- Hours card with live badge -->            <div class="rounded-2xl p-5 flex items-center justify-between" style="background:var(--color-bg3); border:1px solid var(--color-border);">              <div>                <div class="text-white text-sm font-semibold mb-1">Κατάσταση αυτή τη στιγμή</div>                <div class="text-gray-400 text-xs" id="next-status-text">Φορτώνεται...</div>              </div>              <span id="open-badge-footer" role="status" aria-live="polite" class="inline-flex items-center gap-2 text-sm font-bold px-3 py-1.5 rounded-full">                <span id="badge-dot-footer" class="w-2 h-2 rounded-full"></span>                <span id="badge-text-footer">–</span>              </span>            </div>            <!-- Map -->            <div class="rounded-2xl overflow-hidden" style="border:1px solid var(--color-border); height:220px;">              <div class="w-full h-full flex flex-col items-center justify-center text-center p-6" style="background:var(--color-bg3);">                <div class="text-3xl mb-3">🗺️</div>                <div class="text-white font-semibold mb-1">Olympus Fitness</div>                <div class="text-gray-400 text-sm mb-4">Εγνατία 147, Θεσσαλονίκη 546 35</div>                <a href="https://maps.google.com/?q=Εγνατία+147+Θεσσαλονίκη" target="_blank" rel="noopener noreferrer" class="btn-gold px-5 py-2 text-sm rounded-lg" aria-label="Άνοιγμα χάρτη στο Google Maps"> Οδηγίες στο Google Maps → </a>              </div>            </div>          </div>        </div>      </div>    </section>    <!-- ═══════════════════════════════════════════════════════     FOOTER═══════════════════════════════════════════════════════ -->    <footer aria-label="Footer">      <!-- Instagram strip -->      <div class="border-b" style="border-color:var(--color-border);">        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">          <div class="flex items-center justify-between mb-6">            <h3 class="font-display text-2xl text-white tracking-wide">@OLYMPUSFITNESSGR</h3>            <a href="#" class="btn-outline px-5 py-2 text-sm rounded-lg" aria-label="Ακολούθησε στο Instagram">Ακολούθησε →</a>          </div>          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2" aria-label="Instagram feed">            <div class="aspect-square rounded-xl overflow-hidden">              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 1" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />            </div>            <div class="aspect-square rounded-xl overflow-hidden">              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 2" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />            </div>            <div class="aspect-square rounded-xl overflow-hidden">              <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 3" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />            </div>            <div class="aspect-square rounded-xl overflow-hidden">              <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 4" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />            </div>            <div class="aspect-square rounded-xl overflow-hidden hidden sm:block">              <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 5" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />            </div>            <div class="aspect-square rounded-xl overflow-hidden hidden sm:block">              <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 6" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />            </div>            <div class="aspect-square rounded-xl overflow-hidden hidden md:block">              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 7" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />            </div>            <div class="aspect-square rounded-xl overflow-hidden hidden md:block">              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop,spa" loading="lazy" alt="Instagram post 8" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />            </div>          </div>        </div>      </div>      <!-- Footer main -->      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">          <!-- Brand -->          <div class="md:col-span-1">            <div class="flex items-center gap-3 mb-4">              <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#C9A84C,#F5D98B);">                <span class="font-display text-black text-xl">OF</span>              </div>              <div>                <div class="font-display text-xl tracking-widest gold-text">OLYMPUS</div>                <div class="text-xs text-gray-500 tracking-[0.2em] uppercase" style="margin-top:-2px;">FITNESS</div>              </div>            </div>            <p class="text-gray-500 text-sm leading-relaxed"> Από το 2010 στη Θεσσαλονίκη. Το γυμναστήριο που ανεβάζει τα όρια. </p>            <div class="flex gap-3 mt-5">              <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors" style="background:var(--color-bg3); border:1px solid var(--color-border);">f</a>              <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-yellow-400 transition-colors" style="background:var(--color-bg3); border:1px solid var(--color-border);">ig</a>              <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-red-400 transition-colors" style="background:var(--color-bg3); border:1px solid var(--color-border);">yt</a>            </div>          </div>          <!-- Quick links -->          <div>            <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-4">Πλοήγηση</h4>            <ul class="space-y-2 text-sm text-gray-500">              <li>                <a href="#services" class="hover:text-yellow-400 transition-colors">Προγράμματα</a>              </li>              <li>                <a href="#pricing" class="hover:text-yellow-400 transition-colors">Συνδρομές</a>              </li>              <li>                <a href="#gallery" class="hover:text-yellow-400 transition-colors">Εγκαταστάσεις</a>              </li>              <li>                <a href="#team" class="hover:text-yellow-400 transition-colors">Η Ομάδα</a>              </li>              <li>                <a href="#faq" class="hover:text-yellow-400 transition-colors">FAQ</a>              </li>              <li>                <a href="#contact" class="hover:text-yellow-400 transition-colors">Επικοινωνία</a>              </li>            </ul>          </div>          <!-- Programs -->          <div>            <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-4">Προγράμματα</h4>            <ul class="space-y-2 text-sm text-gray-500">              <li>                <a href="#services" class="hover:text-yellow-400 transition-colors">CrossFit WOD</a>              </li>              <li>                <a href="#services" class="hover:text-yellow-400 transition-colors">Personal Training</a>              </li>              <li>                <a href="#services" class="hover:text-yellow-400 transition-colors">Yoga &amp; Pilates</a>              </li>              <li>                <a href="#services" class="hover:text-yellow-400 transition-colors">Boxing</a>              </li>              <li>                <a href="#services" class="hover:text-yellow-400 transition-colors">HIIT Cardio</a>              </li>              <li>                <a href="#services" class="hover:text-yellow-400 transition-colors">Nutrition Coaching</a>              </li>            </ul>          </div>          <!-- Hours & Contact -->          <div>            <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-4">Ωράριο</h4>            <ul class="space-y-2 text-sm text-gray-500">              <li class="flex justify-between">                <span>Δε–Πα</span>                <span class="text-gray-300">06:30–22:00</span>              </li>              <li class="flex justify-between">                <span>Σάββατο</span>                <span class="text-gray-300">08:00–20:00</span>              </li>              <li class="flex justify-between">                <span>Κυριακή</span>                <span class="text-gray-300">09:00–17:00</span>              </li>            </ul>            <div class="mt-5 space-y-2 text-sm text-gray-500">              <div>                <a href="tel:+302310123456" class="hover:text-yellow-400 transition-colors">📞 2310 123 456</a>              </div>              <div>                <a href="mailto:info@olympusfitness.gr" class="hover:text-yellow-400 transition-colors">✉ info@olympusfitness.gr</a>              </div>              <div>📍 Εγνατία 147, Θεσσαλονίκη</div>            </div>          </div>        </div>        <div class="border-t mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-600" style="border-color:var(--color-border);">          <p>© 2025 Olympus Fitness. Με επιφύλαξη παντός δικαιώματος. <br class="sm:hidden">Designed by <a href="https://aris.website" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition-colors">aris.website</a></p>          <div class="flex gap-4">            <a href="#" class="hover:text-gray-400 transition-colors">Πολιτική Απορρήτου</a>            <a href="#" class="hover:text-gray-400 transition-colors">Όροι Χρήσης</a>          </div>        </div>      </div>    </footer>    <!-- ═══════════════════════════════════════════════════════     JAVASCRIPT═══════════════════════════════════════════════════════ -->    <script>      // ── HELPERS ──────────────────────────────────────────────      const $ = (sel) => document.querySelector(sel);      const hours = {         // [openH, openM, closeH, closeM] — local Greek time        0: [9, 0, 17, 0],   // Sun        1: [6, 30, 22, 0],  // Mon        2: [6, 30, 22, 0],        3: [6, 30, 22, 0],        4: [6, 30, 22, 0],        5: [6, 30, 22, 0],  // Fri        6: [8, 0, 20, 0],   // Sat      };
-      function getOpenStatus() {        const now = new Date();        const day = now.getDay();        const h = now.getHours();        const m = now.getMinutes();        const [oH, oM, cH, cM] = hours[day];        const nowMins = h * 60 + m;        const openMins = oH * 60 + oM;        const closeMins = cH * 60 + cM;        return nowMins >= openMins && nowMins < closeMins;      }
-      function getNextStatusText() {        const now = new Date();        const day = now.getDay();        const h = now.getHours();        const m = now.getMinutes();        const [oH, oM, cH, cM] = hours[day];        const nowMins = h * 60 + m;        const openMins = oH * 60 + oM;        const closeMins = cH * 60 + cM;        const dayNames = ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'];        if (nowMins >= openMins && nowMins < closeMins) {          const rem = closeMins - nowMins;          const rh = Math.floor(rem / 60),            rm = rem % 60;          return `Κλείνει σε ${rh>0 ? rh+'ω ':''} ${rm} λεπτά`;        } else if (nowMins < openMins) {          return `Ανοίγει σήμερα στις ${oH}:${String(oM).padStart(2,'0')}`;        } else {          const nextDay = (day + 1) % 7;          const [nH, nM] = hours[nextDay];          return `Ανοίγει ${dayNames[nextDay]} στις ${nH}:${String(nM).padStart(2,'0')}`;        }      }
-      function updateBadge() {        const isOpen = getOpenStatus();        const label = isOpen ? 'Ανοιχτά' : 'Κλειστά';        const cls = isOpen ? 'open' : 'closed';                // Navbar badge          const badge = $('#open-badge');          if (badge) {              badge.className = '';              badge.id = 'open-badge';              badge.classList.add(cls);              $('#badge-text').textContent = label;          }
-        // Footer badge          const badgeF = $('#open-badge-footer');          if (badgeF) {              badgeF.className = 'inline-flex items-center gap-2 text-sm font-bold px-3 py-1.5 rounded-full';              if (isOpen) {                  badgeF.style.background = 'rgba(34,197,94,0.15)';                  badgeF.style.color = '#22c55e';                  badgeF.style.border = '1px solid rgba(34,197,94,0.3)';                  $('#badge-dot-footer').style.background = '#22c55e';              } else {                  badgeF.style.background = 'rgba(239,68,68,0.12)';                  badgeF.style.color = '#ef4444';                  badgeF.style.border = '1px solid rgba(239,68,68,0.2)';                  $('#badge-dot-footer').style.background = '#ef4444';              }              $('#badge-text-footer').textContent = label;          }                const nst = $('#next-status-text');        if (nst) nst.textContent = getNextStatusText();      }            updateBadge();      setInterval(updateBadge, 60000);
-      // ── NAVBAR SCROLL ─────────────────────────────────────────      window.addEventListener('scroll', () => {          const nb = $('#navbar');          if (window.scrollY > 40) nb.classList.add('scrolled');          else nb.classList.remove('scrolled');      }, { passive: true });
-      // ── MOBILE MENU ───────────────────────────────────────────      const menuToggle = $('#menu-toggle');      const mobileMenu = $('#mobile-menu');
-      function closeMobileMenu() {        mobileMenu.classList.remove('open');        menuToggle.setAttribute('aria-expanded', 'false');        $('#ham1').style.transform = '';        $('#ham2').style.opacity = '1';        $('#ham3').style.transform = '';      }
-      menuToggle.addEventListener('click', () => {        const isOpen = mobileMenu.classList.toggle('open');        menuToggle.setAttribute('aria-expanded', isOpen);        if (isOpen) {          $('#ham1').style.transform = 'rotate(45deg) translate(4px, 5px)';          $('#ham2').style.opacity = '0';          $('#ham3').style.transform = 'rotate(-45deg) translate(4px, -5px)';        } else {          closeMobileMenu();        }      });
-      // ── FAQ ACCORDION ─────────────────────────────────────────      function toggleFaq(btn) {          const answer = btn.nextElementSibling;          const isOpen = answer.classList.contains('open');
-        // Close all          document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));          document.querySelectorAll('.faq-btn').forEach(b => {              b.classList.remove('open');              b.setAttribute('aria-expanded', 'false');          });
-        if (!isOpen) {          answer.classList.add('open');          btn.classList.add('open');          btn.setAttribute('aria-expanded', 'true');        }      }
-      // ── BEFORE / AFTER SLIDER ─────────────────────────────────      (function() {          const container = document.getElementById('ba-container');          const after = document.getElementById('ba-after');          const handle = document.getElementById('ba-handle');          if (!container) return;
+
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 0.5;
+          transform: scale(1.5);
+        }
+      }
+
+      /* ── CTA BUTTON ── */
+      .btn-gold {
+        background: linear-gradient(135deg, #C9A84C 0%, #F5D98B 50%, #C9A84C 100%);
+        color: #000;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        border-radius: 0.5rem;
+        transition: filter 0.25s ease, transform 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-gold:hover {
+        filter: brightness(1.15);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        border: 1.5px solid var(--color-accent);
+        color: var(--color-accent);
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        border-radius: 0.5rem;
+        transition: background 0.25s ease, color 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-outline:hover {
+        background: var(--color-accent);
+        color: #000;
+      }
+
+      /* ── MOBILE MENU ── */
+      #mobile-menu {
+        display: none;
+        flex-direction: column;
+        background: rgba(10, 10, 10, 0.98);
+        border-top: 1px solid var(--color-border);
+        padding: 1.5rem;
+        gap: 1.2rem;
+      }
+
+      #mobile-menu.open {
+        display: flex;
+      }
+
+      #mobile-menu a {
+        color: var(--color-text);
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: color 0.2s;
+      }
+
+      #mobile-menu a:hover {
+        color: var(--color-accent);
+      }
+
+      /* ── SECTION ── */
+      section {
+        padding: 5rem 0;
+      }
+
+      .section-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        margin-bottom: 0.6rem;
+      }
+
+      /* ── INPUT ── */
+      input,
+      textarea,
+      select {
+        background: #1a1a1a;
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        border-radius: 0.5rem;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        transition: border-color 0.2s;
+        outline: none;
+        font-family: inherit;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: var(--color-accent);
+      }
+
+      label {
+        font-size: 0.85rem;
+        color: var(--color-muted);
+        margin-bottom: 0.3rem;
+        display: block;
+      }
+
+      /* ── DIVIDER ── */
+      .gold-divider {
+        width: 3rem;
+        height: 3px;
+        background: linear-gradient(90deg, var(--color-accent), transparent);
+        margin-bottom: 1.5rem;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: #070707;
+        border-top: 1px solid var(--color-border);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════════════════     NAVBAR═══════════════════════════════════════════════════════ -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" aria-label="Κύρια πλοήγηση">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-18 py-4">
+          <!-- Logo -->
+          <a href="#hero" class="flex items-center gap-3" aria-label="Olympus Fitness – Αρχική">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#C9A84C,#F5D98B);">
+              <span class="font-display text-black text-xl leading-none">OF</span>
+            </div>
+            <div class="leading-tight">
+              <div class="font-display text-xl tracking-widest gold-text">OLYMPUS</div>
+              <div class="text-xs text-gray-400 tracking-[0.2em] uppercase" style="margin-top:-2px;">FITNESS</div>
+            </div>
+          </a>
+          <!-- Desktop Nav -->
+          <ul class="hidden lg:flex items-center gap-8 text-sm font-medium tracking-wide" role="list">
+            <li>
+              <a href="#services" class="text-gray-300 hover:text-yellow-400 transition-colors">Προγράμματα</a>
+            </li>
+            <li>
+              <a href="#pricing" class="text-gray-300 hover:text-yellow-400 transition-colors">Συνδρομές</a>
+            </li>
+            <li>
+              <a href="#gallery" class="text-gray-300 hover:text-yellow-400 transition-colors">Χώρος</a>
+            </li>
+            <li>
+              <a href="#team" class="text-gray-300 hover:text-yellow-400 transition-colors">Team</a>
+            </li>
+            <li>
+              <a href="#faq" class="text-gray-300 hover:text-yellow-400 transition-colors">FAQ</a>
+            </li>
+            <li>
+              <a href="#contact" class="text-gray-300 hover:text-yellow-400 transition-colors">Επικοινωνία</a>
+            </li>
+          </ul>
+          <!-- CTA + Badge -->
+          <div class="hidden lg:flex items-center gap-4">
+            <span id="open-badge" role="status" aria-live="polite">
+              <span id="badge-dot"></span>
+              <span id="badge-text">–</span>
+            </span>
+            <a href="#contact" class="btn-gold px-5 py-2.5 text-sm">Δωρεάν Δοκιμή →</a>
+          </div>
+          <!-- Hamburger -->
+          <button id="menu-toggle" class="lg:hidden flex flex-col gap-1.5 p-2" aria-label="Άνοιγμα μενού" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="w-6 h-0.5 bg-white block transition-all" id="ham1"></span>
+            <span class="w-6 h-0.5 bg-white block transition-all" id="ham2"></span>
+            <span class="w-4 h-0.5 bg-yellow-400 block transition-all ml-auto" id="ham3"></span>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" role="navigation" aria-label="Μενού κινητού">
+        <a href="#services" onclick="closeMobileMenu()">Προγράμματα</a>
+        <a href="#pricing" onclick="closeMobileMenu()">Συνδρομές</a>
+        <a href="#gallery" onclick="closeMobileMenu()">Χώρος</a>
+        <a href="#team" onclick="closeMobileMenu()">Team</a>
+        <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+        <a href="#contact" onclick="closeMobileMenu()">Επικοινωνία</a>
+        <a href="#contact" class="btn-gold px-5 py-3 text-center rounded-lg text-sm mt-2" onclick="closeMobileMenu()">Δωρεάν Δοκιμή →</a>
+      </div>
+    </nav>
+    <!-- ═══════════════════════════════════════════════════════     HERO═══════════════════════════════════════════════════════ -->
+    <section id="hero" class="hero-section flex flex-col justify-center" aria-label="Κύρια παρουσίαση">
+      <!-- Background Image -->
+      <div class="hero-bg">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&h=900&fit=crop" loading="lazy" alt="Olympus Fitness – Χώρος γυμναστηρίου" />
+      </div>
+      <!-- Dark Overlay -->
+      <div class="hero-overlay"></div>
+      <!-- Typographic Texture -->
+      <div class="hero-texture" aria-hidden="true">
+        <div class="hero-texture-text"> OLYMPUS <br>FITNESS <br>POWER </div>
+      </div>
+      <!-- Content -->
+      <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 w-full pt-28 pb-16">
+        <div class="max-w-3xl">
+          <div class="section-label mb-4">Θεσσαλονίκη · Από το 2010</div>
+          <h1 class="font-display text-6xl sm:text-7xl md:text-8xl xl:text-9xl leading-none mb-6">
+            <span class="gold-text">ΞΕΠΕΡΑΣΕ</span>
+            <br>
+            <span class="text-white">ΤΑ ΟΡΙΑ</span>
+            <br>
+            <span style="color:rgba(255,255,255,0.25)">ΣΟΥ</span>
+          </h1>
+          <p class="text-gray-300 text-lg md:text-xl max-w-xl mb-8 leading-relaxed font-light"> Το <strong class="text-white font-semibold">Olympus Fitness</strong> είναι ο χώρος που ο δυναμικός σου εαυτός περίμενε. Κορυφαίος εξοπλισμός, πιστοποιημένοι coaches και ένα community που σε ωθεί κάθε μέρα πιο ψηλά. </p>
+          <div class="flex flex-wrap gap-4 mb-12">
+            <a href="#contact" class="btn-gold px-7 py-4 text-base rounded-lg"> Ξεκίνα Δωρεάν → </a>
+            <a href="#services" class="btn-outline px-7 py-4 text-base rounded-lg"> Τα Προγράμματά μας </a>
+          </div>
+          <!-- Mini trust -->
+          <div class="flex flex-wrap items-center gap-6 text-sm text-gray-400">
+            <div class="flex items-center gap-2">
+              <span class="stars text-base">★★★★★</span>
+              <span>
+                <strong class="text-white">4.9</strong> (340 κριτικές) </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span style="color:var(--color-accent)">✓</span>
+              <span>+2.400 ενεργά μέλη</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span style="color:var(--color-accent)">✓</span>
+              <span>15 χρόνια λειτουργίας</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Scroll hint -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-50" aria-hidden="true">
+        <span class="text-xs text-gray-400 tracking-widest uppercase">Scroll</span>
+        <div class="w-0.5 h-8 bg-gradient-to-b from-yellow-500 to-transparent animate-bounce"></div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     TRUST STRIP═══════════════════════════════════════════════════════ -->
+    <div class="trust-strip py-4" aria-label="Σύντομη παρουσίαση">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10 text-sm text-gray-300">
+          <div class="flex items-center gap-2">
+            <span style="color:var(--color-accent)" class="text-lg">🏆</span>
+            <span>Best Gym Thessaloniki 2023</span>
+          </div>
+          <div class="w-px h-4 bg-gray-700 hidden sm:block"></div>
+          <div class="flex items-center gap-2">
+            <span style="color:var(--color-accent)" class="text-lg">💪</span>
+            <span>Πιστοποιημένοι Personal Trainers</span>
+          </div>
+          <div class="w-px h-4 bg-gray-700 hidden sm:block"></div>
+          <div class="flex items-center gap-2">
+            <span style="color:var(--color-accent)" class="text-lg">📍</span>
+            <span>Κέντρο Θεσσαλονίκης</span>
+          </div>
+          <div class="w-px h-4 bg-gray-700 hidden sm:block"></div>
+          <div class="flex items-center gap-2">
+            <span style="color:var(--color-accent)" class="text-lg">🔥</span>
+            <span>Πρόγραμμα 7 ημερών δωρεάν</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ═══════════════════════════════════════════════════════     STATS BAR═══════════════════════════════════════════════════════ -->
+    <div class="stat-bar py-14" aria-label="Στατιστικά">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="stat-number gold-text">15+</div>
+            <div class="text-gray-400 text-sm tracking-widest uppercase mt-1">Χρόνια Εμπειρίας</div>
+          </div>
+          <div>
+            <div class="stat-number gold-text">2.4K</div>
+            <div class="text-gray-400 text-sm tracking-widest uppercase mt-1">Ενεργά Μέλη</div>
+          </div>
+          <div>
+            <div class="stat-number gold-text">24</div>
+            <div class="text-gray-400 text-sm tracking-widest uppercase mt-1">Expert Coaches</div>
+          </div>
+          <div>
+            <div class="stat-number gold-text">340</div>
+            <div class="text-gray-400 text-sm tracking-widest uppercase mt-1">5★ Κριτικές</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ═══════════════════════════════════════════════════════     MARQUEE – PROGRAMS TICKER═══════════════════════════════════════════════════════ -->
+    <div class="marquee-wrapper py-5 border-y" style="border-color:var(--color-border);background:var(--color-bg2);" aria-hidden="true">
+      <div class="marquee-track text-sm font-semibold tracking-widest uppercase" style="color:var(--color-muted);">
+        <!-- Repeat twice for seamless loop -->
+        <span style="color:var(--color-accent)">★</span> CrossFit <span style="color:var(--color-accent)">★</span> Personal Training <span style="color:var(--color-accent)">★</span> Yoga &amp; Pilates <span style="color:var(--color-accent)">★</span> Boxing <span style="color:var(--color-accent)">★</span> Strength &amp; Conditioning <span style="color:var(--color-accent)">★</span> HIIT <span style="color:var(--color-accent)">★</span> Spinning <span style="color:var(--color-accent)">★</span> Nutrition Coaching <span style="color:var(--color-accent)">★</span> Recovery &amp; Stretch <span style="color:var(--color-accent)">★</span> CrossFit <span style="color:var(--color-accent)">★</span> Personal Training <span style="color:var(--color-accent)">★</span> Yoga &amp; Pilates <span style="color:var(--color-accent)">★</span> Boxing <span style="color:var(--color-accent)">★</span> Strength &amp; Conditioning <span style="color:var(--color-accent)">★</span> HIIT <span style="color:var(--color-accent)">★</span> Spinning <span style="color:var(--color-accent)">★</span> Nutrition Coaching <span style="color:var(--color-accent)">★</span> Recovery &amp; Stretch
+      </div>
+    </div>
+    <!-- ═══════════════════════════════════════════════════════     SERVICES═══════════════════════════════════════════════════════ -->
+    <section id="services" aria-labelledby="services-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+          <div class="section-label">Τι Προσφέρουμε</div>
+          <h2 id="services-heading" class="font-display text-5xl md:text-6xl text-white"> ΤΑ ΠΡΟΓΡΑΜΜΑΤΑ <br>
+            <span class="gold-text">ΜΑΣ</span>
+          </h2>
+          <p class="text-gray-400 mt-4 max-w-xl mx-auto"> Από αρχάριους έως επαγγελματίες αθλητές — έχουμε το πρόγραμμα που ταιριάζει στους στόχους σου. </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1: CrossFit -->
+          <article class="service-card" aria-label="CrossFit">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&h=400&fit=crop" loading="lazy" alt="CrossFit προπόνηση" />
+              <span class="card-badge">Δημοφιλές</span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl text-white mb-2">CrossFit WOD</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Υψηλής έντασης λειτουργική προπόνηση για μέγιστα αποτελέσματα. Ομαδικά sessions με certified L2 coaches. </p>
+              <div class="flex items-center justify-between">
+                <span class="text-yellow-400 font-bold text-lg">από 45€/μήνα</span>
+                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>
+              </div>
+            </div>
+          </article>
+          <!-- Card 2: Personal Training -->
+          <article class="service-card" aria-label="Personal Training">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop" loading="lazy" alt="Personal Training" />
+              <span class="card-badge">Premium</span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl text-white mb-2">Personal Training</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4"> 1-on-1 προπόνηση με εξατομικευμένο πλάνο, διατροφική καθοδήγηση και tracking προόδου ανά εβδομάδα. </p>
+              <div class="flex items-center justify-between">
+                <span class="text-yellow-400 font-bold text-lg">από 35€/session</span>
+                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>
+              </div>
+            </div>
+          </article>
+          <!-- Card 3: Yoga & Pilates -->
+          <article class="service-card" aria-label="Yoga και Pilates">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&h=400&fit=crop" loading="lazy" alt="Yoga και Pilates" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl text-white mb-2">Yoga &amp; Pilates</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Ευελιξία, ισορροπία και εσωτερική ηρεμία. Ιδανικό συμπλήρωμα για κάθε τύπο προπόνησης. </p>
+              <div class="flex items-center justify-between">
+                <span class="text-yellow-400 font-bold text-lg">από 35€/μήνα</span>
+                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>
+              </div>
+            </div>
+          </article>
+          <!-- Card 4: Boxing -->
+          <article class="service-card" aria-label="Boxing">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&h=400&fit=crop" loading="lazy" alt="Boxing προπόνηση" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl text-white mb-2">Boxing</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Τεχνική, ταχύτητα και αγωνιστικό πνεύμα. Ανοιχτό σε όλα τα επίπεδα — από αρχάριους έως αγωνιζόμενους. </p>
+              <div class="flex items-center justify-between">
+                <span class="text-yellow-400 font-bold text-lg">από 40€/μήνα</span>
+                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>
+              </div>
+            </div>
+          </article>
+          <!-- Card 5: HIIT Cardio -->
+          <article class="service-card" aria-label="HIIT Cardio">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=400&fit=crop" loading="lazy" alt="HIIT Cardio προπόνηση" />
+              <span class="card-badge">Νέο</span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl text-white mb-2">HIIT Cardio</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Καύση λίπους σε χρόνο ρεκόρ. Διαστηματική προπόνηση υψηλής έντασης με μουσική και ατμόσφαιρα που σε εκτοξεύει. </p>
+              <div class="flex items-center justify-between">
+                <span class="text-yellow-400 font-bold text-lg">Included</span>
+                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>
+              </div>
+            </div>
+          </article>
+          <!-- Card 6: Nutrition Coaching -->
+          <article class="service-card" aria-label="Διατροφική Καθοδήγηση">
+            <div class="card-img">
+              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop" loading="lazy" alt="Διατροφική καθοδήγηση" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-2xl text-white mb-2">Nutrition Coaching</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-4"> Εξατομικευμένο διατροφικό πλάνο από πιστοποιημένους διατροφολόγους. Η σωστή τροφή είναι το μισό αποτέλεσμα. </p>
+              <div class="flex items-center justify-between">
+                <span class="text-yellow-400 font-bold text-lg">από 50€</span>
+                <a href="#contact" class="btn-outline px-4 py-2 text-xs rounded-lg">Εγγραφή</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     BEFORE / AFTER SLIDER═══════════════════════════════════════════════════════ -->
+    <section style="background:var(--color-bg2);" aria-labelledby="ba-heading">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+          <div class="section-label">Αποτελέσματα</div>
+          <h2 id="ba-heading" class="font-display text-5xl md:text-6xl text-white"> ΠΡΙΝ &amp; <span class="gold-text">ΜΕΤΑ</span>
+          </h2>
+          <p class="text-gray-400 mt-3">Σύρε το slider και δες τη διαφορά.</p>
+        </div>
+        <div class="ba-container max-w-3xl mx-auto" id="ba-container" aria-label="Σύγκριση πριν και μετά">
+          <!-- Before -->
+          <div class="ba-before" style="height:420px;">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&h=420&fit=crop" loading="lazy" alt="Πριν την προπόνηση" />
+          </div>
+          <!-- After (top layer) -->
+          <div class="ba-after" id="ba-after" style="width:50%;">
+            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&h=420&fit=crop" loading="lazy" alt="Μετά την προπόνηση" style="width:900px; max-width:none;" />
+          </div>
+          <!-- Handle -->
+          <div class="ba-handle" id="ba-handle" style="left:50%;" role="slider" aria-label="Slider σύγκρισης" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+          <!-- Labels -->
+          <div class="absolute top-4 left-4 z-20 text-xs font-bold uppercase tracking-widest                 bg-black/50 text-gray-300 px-3 py-1 rounded-full pointer-events-none" aria-hidden="true">Πριν</div>
+          <div class="absolute top-4 right-4 z-20 text-xs font-bold uppercase tracking-widest                 bg-black/50 px-3 py-1 rounded-full pointer-events-none" style="color:var(--color-accent);" aria-hidden="true">Μετά</div>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     PROCESS TIMELINE═══════════════════════════════════════════════════════ -->
+    <section aria-labelledby="process-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+          <div class="section-label">Πώς Ξεκινάς</div>
+          <h2 id="process-heading" class="font-display text-5xl md:text-6xl text-white"> 4 ΒΗΜΑΤΑ ΠΡΟΣ <br>
+            <span class="gold-text">ΤΟΝ ΣΤΟΧΟ ΣΟΥ</span>
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+          <!-- Connecting line (desktop) -->
+          <div class="step-line absolute top-8 left-[12.5%] right-[12.5%] h-0.5 hidden md:block" style="background:linear-gradient(90deg, transparent, var(--color-accent), transparent);" aria-hidden="true"></div>
+          <!-- Step 1 -->
+          <div class="text-center relative">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 z-10 relative" style="background:linear-gradient(135deg,#C9A84C,#F5D98B); color:#000;">
+              <span class="font-display text-2xl">01</span>
+            </div>
+            <h3 class="font-bold text-white mb-2">Δωρεάν Αξιολόγηση</h3>
+            <p class="text-gray-400 text-sm leading-relaxed"> Έρχεσαι για ένα δωρεάν session με coach. Μαζί ορίζουμε τους στόχους σου. </p>
+          </div>
+          <!-- Step 2 -->
+          <div class="text-center relative">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 z-10 relative" style="background:var(--color-bg3); border:2px solid var(--color-accent); color:var(--color-accent);">
+              <span class="font-display text-2xl">02</span>
+            </div>
+            <h3 class="font-bold text-white mb-2">Εξατομικευμένο Πλάνο</h3>
+            <p class="text-gray-400 text-sm leading-relaxed"> Δημιουργούμε πρόγραμμα προπόνησης και διατροφής ειδικά για σένα. </p>
+          </div>
+          <!-- Step 3 -->
+          <div class="text-center relative">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 z-10 relative" style="background:var(--color-bg3); border:2px solid var(--color-accent); color:var(--color-accent);">
+              <span class="font-display text-2xl">03</span>
+            </div>
+            <h3 class="font-bold text-white mb-2">Ξεκινάς Προπόνηση</h3>
+            <p class="text-gray-400 text-sm leading-relaxed"> Πρόσβαση σε όλες τις εγκαταστάσεις, τα ομαδικά και τον coach σου. </p>
+          </div>
+          <!-- Step 4 -->
+          <div class="text-center relative">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 z-10 relative" style="background:var(--color-bg3); border:2px solid var(--color-accent); color:var(--color-accent);">
+              <span class="font-display text-2xl">04</span>
+            </div>
+            <h3 class="font-bold text-white mb-2">Tracking &amp; Αποτελέσματα</h3>
+            <p class="text-gray-400 text-sm leading-relaxed"> Μηνιαία αξιολόγηση, προσαρμογή στόχων και κοινή εκτίμηση της προόδου σου. </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     PRICING═══════════════════════════════════════════════════════ -->
+    <section id="pricing" style="background:var(--color-bg2);" aria-labelledby="pricing-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+          <div class="section-label">Τιμολόγηση</div>
+          <h2 id="pricing-heading" class="font-display text-5xl md:text-6xl text-white"> ΣΥΝΔΡΟΜΕΣ <span class="gold-text">2025</span>
+          </h2>
+          <p class="text-gray-400 mt-3">Χωρίς κρυφές χρεώσεις. Ακύρωση οποτεδήποτε.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <!-- Starter -->
+          <div class="pricing-card p-8">
+            <div class="section-label mb-1">Starter</div>
+            <div class="price-num text-white">39 <span class="text-xl text-gray-400">€</span>
+            </div>
+            <div class="text-gray-400 text-sm mb-6">ανά μήνα</div>
+            <ul class="space-y-3 mb-8">
+              <li class="check-item">
+                <span class="check-icon">✓</span> Πρόσβαση σε αίθουσα βαρών
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> Cardio zone (treadmills, bikes)
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> 2 ομαδικά / εβδομάδα
+              </li>
+              <li class="check-item cross-item">
+                <span class="cross-icon">✗</span>
+                <span class="text-gray-500"> Personal Training</span>
+              </li>
+              <li class="check-item cross-item">
+                <span class="cross-icon">✗</span>
+                <span class="text-gray-500"> Nutrition Coaching</span>
+              </li>
+              <li class="check-item cross-item">
+                <span class="cross-icon">✗</span>
+                <span class="text-gray-500"> Sauna &amp; Recovery Zone</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn-outline w-full py-3 text-sm justify-center rounded-lg block text-center">Επιλογή Πλάνου</a>
+          </div>
+          <!-- Pro (popular) -->
+          <div class="pricing-card popular p-8 relative">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="popular-badge">Πιο Δημοφιλές</span>
+            </div>
+            <div class="section-label mb-1">Pro</div>
+            <div class="price-num gold-text">65 <span class="text-xl" style="color:var(--color-muted);">€</span>
+            </div>
+            <div class="text-gray-400 text-sm mb-6">ανά μήνα</div>
+            <ul class="space-y-3 mb-8">
+              <li class="check-item">
+                <span class="check-icon">✓</span> Όλα του Starter
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> Απεριόριστα ομαδικά
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> 2 PT sessions / μήνα
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> Nutrition check-in
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> Sauna &amp; Recovery Zone
+              </li>
+              <li class="check-item cross-item">
+                <span class="cross-icon">✗</span>
+                <span class="text-gray-500"> Unlimited PT</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn-gold w-full py-3 text-sm justify-center rounded-lg block text-center">Επιλογή Πλάνου</a>
+          </div>
+          <!-- Elite -->
+          <div class="pricing-card p-8">
+            <div class="section-label mb-1">Elite</div>
+            <div class="price-num text-white">99 <span class="text-xl text-gray-400">€</span>
+            </div>
+            <div class="text-gray-400 text-sm mb-6">ανά μήνα</div>
+            <ul class="space-y-3 mb-8">
+              <li class="check-item">
+                <span class="check-icon">✓</span> Όλα του Pro
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> Unlimited PT sessions
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> Μηνιαίο Nutrition Plan
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> Κράτηση κατά προτεραιότητα
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> Απεριόριστη Sauna &amp; Spa
+              </li>
+              <li class="check-item">
+                <span class="check-icon">✓</span> Guest pass 2x/μήνα
+              </li>
+            </ul>
+            <a href="#contact" class="btn-outline w-full py-3 text-sm justify-center rounded-lg block text-center">Επιλογή Πλάνου</a>
+          </div>
+        </div>
+        <p class="text-center text-gray-500 text-sm mt-8"> * Φοιτητική και επαγγελματική κάρτα με <strong class="text-yellow-400">20% έκπτωση</strong>. Ετήσια συνδρομή με επιπλέον <strong class="text-yellow-400">2 μήνες δώρο</strong>. </p>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     REVIEWS═══════════════════════════════════════════════════════ -->
+    <section aria-labelledby="reviews-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+          <div class="section-label">Τι Λένε τα Μέλη</div>
+          <h2 id="reviews-heading" class="font-display text-5xl md:text-6xl text-white"> ΚΡΙΤΙΚΕΣ <span class="gold-text">ΜΕΛΩΝ</span>
+          </h2>
+          <div class="flex items-center justify-center gap-3 mt-4">
+            <div class="stars text-2xl">★★★★★</div>
+            <span class="text-gray-300 font-semibold text-xl">4.9</span>
+            <span class="text-gray-500">— 340 κριτικές στο Google</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <blockquote class="review-card p-6">
+            <div class="stars text-sm mb-3">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Τρία χρόνια μέλος και δεν αλλάζω. Οι coaches είναι απολύτως επαγγελματίες, πάντα διαθέσιμοι, και τα αποτελέσματα μιλάνε από μόνα τους. Από 92 κιλά στα 78 σε 5 μήνες." </p>
+            <footer class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Νίκου Π." class="w-10 h-10 rounded-full object-cover" />
+              <div>
+                <cite class="text-white text-sm font-semibold not-italic">Νίκος Π.</cite>
+                <div class="text-gray-500 text-xs">Τριανδρία, Θεσσαλονίκη</div>
+              </div>
+            </footer>
+          </blockquote>
+          <blockquote class="review-card p-6" style="border-color:rgba(201,168,76,0.25); background:linear-gradient(160deg,#1a180a,#1A1A1A);">
+            <div class="stars text-sm mb-3">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Το καλύτερο γυμναστήριο που έχω πατήσει στη Θεσσαλονίκη. Ο εξοπλισμός είναι top και η ατμόσφαιρα εντελώς διαφορετική από τα υπόλοιπα. Το μάθημα Yoga του Κυριάκου είναι must!" </p>
+            <footer class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Μαρίας Κ." class="w-10 h-10 rounded-full object-cover" />
+              <div>
+                <cite class="text-white text-sm font-semibold not-italic">Μαρία Κ.</cite>
+                <div class="text-gray-500 text-xs">Άνω Πόλη, Θεσσαλονίκη</div>
+              </div>
+            </footer>
+          </blockquote>
+          <blockquote class="review-card p-6">
+            <div class="stars text-sm mb-3">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Επαγγελματίας αθλητής εδώ και 10 χρόνια — μετά τον τραυματισμό μου ξεκίνησα Personal Training εδώ. Η αποκατάσταση ήταν εκπληκτική. Ξέρουν αυτό που κάνουν." </p>
+            <footer class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Δημήτρη Σ." class="w-10 h-10 rounded-full object-cover" />
+              <div>
+                <cite class="text-white text-sm font-semibold not-italic">Δημήτρης Σ.</cite>
+                <div class="text-gray-500 text-xs">Καλαμαριά, Θεσσαλονίκη</div>
+              </div>
+            </footer>
+          </blockquote>
+          <blockquote class="review-card p-6">
+            <div class="stars text-sm mb-3">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Ξεκίνησα με CrossFit χωρίς καμία προηγούμενη εμπειρία. Σε 2 εβδομάδες ένιωθα σαν να προπονούμουν χρόνια. Η ομάδα σε αγκαλιάζει από την πρώτη κιόλας μέρα." </p>
+            <footer class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Ελένης Τ." class="w-10 h-10 rounded-full object-cover" />
+              <div>
+                <cite class="text-white text-sm font-semibold not-italic">Ελένη Τ.</cite>
+                <div class="text-gray-500 text-xs">Συκιές, Θεσσαλονίκη</div>
+              </div>
+            </footer>
+          </blockquote>
+          <blockquote class="review-card p-6">
+            <div class="stars text-sm mb-3">★★★★★</div>
+            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Έχω δοκιμάσει 4 γυμναστήρια στη Θεσσαλονίκη. Το Olympus Fitness δεν συγκρίνεται. Ο εξοπλισμός, η καθαριότητα, οι προπονητές — όλα σε άλλο επίπεδο." </p>
+            <footer class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Κώστα Μ." class="w-10 h-10 rounded-full object-cover" />
+              <div>
+                <cite class="text-white text-sm font-semibold not-italic">Κώστας Μ.</cite>
+                <div class="text-gray-500 text-xs">Εύοσμος, Θεσσαλονίκη</div>
+              </div>
+            </footer>
+          </blockquote>
+          <blockquote class="review-card p-6">
+            <div class="stars text-sm mb-3">★★★★☆</div>
+            <p class="text-gray-300 text-sm leading-relaxed mb-5 italic"> "Κορυφαίο επίπεδο PT sessions. Η Αναστασία μου άλλαξε εντελώς τη σχέση μου με το σώμα μου. Μόνο ένα αστεράκι λιγότερο γιατί το parking μπορεί να βελτιωθεί!" </p>
+            <footer class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&h=60&fit=crop&face" loading="lazy" alt="Φωτογραφία Σοφίας Β." class="w-10 h-10 rounded-full object-cover" />
+              <div>
+                <cite class="text-white text-sm font-semibold not-italic">Σοφία Β.</cite>
+                <div class="text-gray-500 text-xs">Νεάπολη, Θεσσαλονίκη</div>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     FOUNDER / TEAM═══════════════════════════════════════════════════════ -->
+    <section id="team" style="background:var(--color-bg2);" aria-labelledby="team-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Text Side -->
+          <div>
+            <div class="section-label">Η Ομάδα μας</div>
+            <h2 id="team-heading" class="font-display text-5xl md:text-6xl text-white leading-none mb-6"> ΑΝΘΡΩΠΟΙ <br>ΠΟΥ <span class="gold-text">ΖΟΥΝ</span>
+              <br>ΤΗΝ ΠΡΟΠΟΝΗΣΗ
+            </h2>
+            <div class="gold-divider"></div>
+            <p class="text-gray-400 leading-relaxed mb-6"> Ο <strong class="text-white">Αλέξανδρος Παπαδόπουλος</strong>, ιδρυτής του Olympus Fitness, ξεκίνησε ως αγωνιστικός weightlifter. Με BSc Αθλητικής Επιστήμης και 15 χρόνια coaching εμπειρία, έφτιαξε το γυμναστήριο που ήθελε να υπάρχει στη Θεσσαλονίκη. </p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-3 text-gray-300 text-sm">
+                <span style="color:var(--color-accent)" class="mt-0.5 flex-shrink-0">✦</span>
+                <span>BSc Αθλητικής Επιστήμης – Α.Π.Θ.</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-300 text-sm">
+                <span style="color:var(--color-accent)" class="mt-0.5 flex-shrink-0">✦</span>
+                <span>NSCA-CPT Πιστοποίηση (Certified Personal Trainer)</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-300 text-sm">
+                <span style="color:var(--color-accent)" class="mt-0.5 flex-shrink-0">✦</span>
+                <span>CrossFit Level 2 Trainer (CF-L2)</span>
+              </li>
+              <li class="flex items-start gap-3 text-gray-300 text-sm">
+                <span style="color:var(--color-accent)" class="mt-0.5 flex-shrink-0">✦</span>
+                <span>Ομάδα 24 πιστοποιημένων coaches σε 8 ειδικότητες</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn-gold px-6 py-3 text-sm rounded-lg inline-flex"> Γνώρισε την Ομάδα → </a>
+          </div>
+          <!-- Photo Side -->
+          <div class="relative">
+            <div class="rounded-3xl overflow-hidden aspect-[4/5]" style="border:2px solid rgba(201,168,76,0.2);">
+              <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=600&h=750&fit=crop" loading="lazy" alt="Αλέξανδρος Παπαδόπουλος – Ιδρυτής Olympus Fitness" class="w-full h-full object-cover object-top" />
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -bottom-6 -left-6 rounded-2xl p-5 z-10" style="background:var(--color-bg3); border:1px solid rgba(201,168,76,0.3); box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+              <div class="font-display text-4xl gold-text leading-none">15</div>
+              <div class="text-xs text-gray-400 uppercase tracking-widest mt-1">Χρόνια <br>Εμπειρίας </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     GALLERY═══════════════════════════════════════════════════════ -->
+    <section id="gallery" aria-labelledby="gallery-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+          <div class="section-label">Ο Χώρος μας</div>
+          <h2 id="gallery-heading" class="font-display text-5xl md:text-6xl text-white"> ΕΓΚΑΤΑΣΤΑΣΕΙΣ <span class="gold-text">ΕΠΙΠΕΔΟΥ</span>
+          </h2>
+          <p class="text-gray-400 mt-3">2.000 τ.μ. premium χώρου στο κέντρο της Θεσσαλονίκης.</p>
+        </div>
+        <div class="gallery-grid" role="list" aria-label="Εικόνες εγκαταστάσεων">
+          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Αίθουσα βαρών">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=800&fit=crop" loading="lazy" alt="Αίθουσα βαρών" />
+          </a>
+          <a href="#gallery" class="gallery-item" role="listitem" aria-label="CrossFit Box">
+            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&h=400&fit=crop" loading="lazy" alt="CrossFit Box" />
+          </a>
+          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Cardio zone">
+            <img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=600&h=600&fit=crop" loading="lazy" alt="Cardio zone" />
+          </a>
+          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Yoga studio">
+            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=400&fit=crop" loading="lazy" alt="Yoga studio" />
+          </a>
+          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Boxing ring">
+            <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&h=700&fit=crop" loading="lazy" alt="Boxing ring" />
+          </a>
+          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Αποδυτήρια premium">
+            <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=600&h=400&fit=crop" loading="lazy" alt="Premium αποδυτήρια" />
+          </a>
+          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Sauna zone">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=500&fit=crop" loading="lazy" alt="Sauna zone" />
+          </a>
+          <a href="#gallery" class="gallery-item" role="listitem" aria-label="Functional training zone">
+            <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=600&h=900&fit=crop" loading="lazy" alt="Functional training zone" />
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     FAQ═══════════════════════════════════════════════════════ -->
+    <section id="faq" style="background:var(--color-bg2);" aria-labelledby="faq-heading">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+          <div class="section-label">Απορίες</div>
+          <h2 id="faq-heading" class="font-display text-5xl md:text-6xl text-white"> ΣΥΧΝΕΣ <span class="gold-text">ΕΡΩΤΗΣΕΙΣ</span>
+          </h2>
+        </div>
+        <div role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">
+              <span>Χρειάζομαι εμπειρία για να εγγραφώ;</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"> Καθόλου! Τo Olympus Fitness δέχεται μέλη από κάθε επίπεδο — από απόλυτους αρχάριους έως έμπειρους αθλητές. Η δωρεάν αρχική αξιολόγηση με coach διασφαλίζει ότι ξεκινάς σωστά και με ασφάλεια. </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">
+              <span>Τι περιλαμβάνει η δωρεάν εβδομάδα δοκιμής;</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"> Πλήρης πρόσβαση στον χώρο, σε όλα τα ομαδικά προγράμματα, στο cardio zone και στο functional training area. Επίσης, ένα 30λεπτο δωρεάν session με personal trainer για να αξιολογηθούν οι στόχοι σου. </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">
+              <span>Υπάρχουν δεσμεύσεις σύμβασης;</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"> Οι μηνιαίες συνδρομές είναι χωρίς δέσμευση — ακύρωση οποτεδήποτε με 15 ημέρες προειδοποίηση. Οι ετήσιες συνδρομές προσφέρουν 2 μήνες δώρο και σταθερή τιμή. </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">
+              <span>Τι ωράριο λειτουργίας έχετε;</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"> Δευτέρα–Παρασκευή: 06:30–22:00 | Σάββατο: 08:00–20:00 | Κυριακή: 09:00–17:00. Τα Elite μέλη έχουν πρόσβαση μέσω κάρτας 24/7. </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">
+              <span>Πού βρίσκεστε και υπάρχει parking;</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"> Βρισκόμαστε στην Εγνατία 147, κοντά στο κέντρο της Θεσσαλονίκης. Εξυπηρετούμαστε από ΜΜΜ (στάση Βενιζέλου, 5 λεπτά με τα πόδια). Δημόσιο parking βρίσκεται στην Πλατεία Δημοκρατίας σε απόσταση 3 λεπτών. </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)" type="button">
+              <span>Προσφέρετε εταιρικά πακέτα;</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"> Ναι! Εταιρικές συνδρομές από 5 άτομα και πάνω με ειδικές τιμές, εκπτώσεις και δυνατότητα ομαδικών sessions wellness στον χώρο σας. Επικοινωνήστε μαζί μας για εξατομικευμένη προσφορά. </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     CONTACT + MAP═══════════════════════════════════════════════════════ -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14">
+          <div class="section-label">Επικοινωνία</div>
+          <h2 id="contact-heading" class="font-display text-5xl md:text-6xl text-white"> ΞΕΚΙΝΑ <span class="gold-text">ΣΗΜΕΡΑ</span>
+          </h2>
+          <p class="text-gray-400 mt-3">Συμπλήρωσε τη φόρμα και θα επικοινωνήσουμε εντός 2 ωρών.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <!-- Form -->
+          <div class="rounded-3xl p-8" style="background:var(--color-bg3); border:1px solid var(--color-border);">
+            <h3 class="font-display text-2xl text-white mb-6 tracking-wide">ΦΟΡΜΑ ΕΓΓΡΑΦΗΣ</h3>
+            <form onsubmit="handleFormSubmit(event)" novalidate aria-label="Φόρμα εγγραφής">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label for="fname">Όνομα *</label>
+                  <input type="text" id="fname" name="fname" required autocomplete="given-name" placeholder="π.χ. Νίκος" aria-required="true" />
+                </div>
+                <div>
+                  <label for="lname">Επώνυμο *</label>
+                  <input type="text" id="lname" name="lname" required autocomplete="family-name" placeholder="π.χ. Παπαδόπουλος" aria-required="true" />
+                </div>
+              </div>
+              <div class="mb-4">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required autocomplete="email" placeholder="email@example.com" aria-required="true" />
+              </div>
+              <div class="mb-4">
+                <label for="phone">Τηλέφωνο</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="69X XXX XXXX" />
+              </div>
+              <div class="mb-4">
+                <label for="program">Ενδιαφέρον Πρόγραμμα</label>
+                <select id="program" name="program">
+                  <option value="">-- Επίλεξε πρόγραμμα --</option>
+                  <option value="crossfit">CrossFit WOD</option>
+                  <option value="pt">Personal Training</option>
+                  <option value="yoga">Yoga &amp; Pilates</option>
+                  <option value="boxing">Boxing</option>
+                  <option value="hiit">HIIT Cardio</option>
+                  <option value="nutrition">Nutrition Coaching</option>
+                  <option value="other">Άλλο</option>
+                </select>
+              </div>
+              <div class="mb-6">
+                <label for="message">Μήνυμα (προαιρετικό)</label>
+                <textarea id="message" name="message" rows="3" placeholder="Πες μας λίγα λόγια για τους στόχους σου..."></textarea>
+              </div>
+              <button type="submit" class="btn-gold w-full py-4 text-base rounded-xl justify-center"> Στείλε Αίτηση Δωρεάν Δοκιμής → </button>
+              <p class="text-gray-500 text-xs text-center mt-3"> Δεν στέλνουμε spam. Τα δεδομένα σου προστατεύονται. </p>
+            </form>
+            <!-- Success message (hidden by default) -->
+            <div id="form-success" class="hidden text-center py-8">
+              <div class="text-5xl mb-4">🏆</div>
+              <h3 class="font-display text-2xl text-white mb-2">ΕΥΧΑΡΙΣΤΟΥΜΕ!</h3>
+              <p class="text-gray-400">Θα επικοινωνήσουμε μαζί σου εντός 2 ωρών.</p>
+            </div>
+          </div>
+          <!-- Info + Map -->
+          <div class="flex flex-col gap-6">
+            <!-- Info cards -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="rounded-2xl p-5" style="background:var(--color-bg3); border:1px solid var(--color-border);">
+                <div class="text-2xl mb-2">📍</div>
+                <div class="text-white text-sm font-semibold mb-1">Διεύθυνση</div>
+                <div class="text-gray-400 text-sm">Εγνατία 147 <br>Θεσσαλονίκη 546 35 </div>
+              </div>
+              <div class="rounded-2xl p-5" style="background:var(--color-bg3); border:1px solid var(--color-border);">
+                <div class="text-2xl mb-2">📞</div>
+                <div class="text-white text-sm font-semibold mb-1">Τηλέφωνο</div>
+                <a href="tel:+302310123456" class="text-yellow-400 text-sm hover:underline"> 2310 123 456 </a>
+              </div>
+              <div class="rounded-2xl p-5" style="background:var(--color-bg3); border:1px solid var(--color-border);">
+                <div class="text-2xl mb-2">🕐</div>
+                <div class="text-white text-sm font-semibold mb-1">Ωράριο</div>
+                <div class="text-gray-400 text-xs leading-relaxed"> Δε–Πα: 06:30–22:00 <br> Σάββατο: 08:00–20:00 <br> Κυριακή: 09:00–17:00 </div>
+              </div>
+              <div class="rounded-2xl p-5" style="background:var(--color-bg3); border:1px solid var(--color-border);">
+                <div class="text-2xl mb-2">✉️</div>
+                <div class="text-white text-sm font-semibold mb-1">Email</div>
+                <a href="mailto:info@olympusfitness.gr" class="text-yellow-400 text-sm hover:underline break-all"> info@olympusfitness.gr </a>
+              </div>
+            </div>
+            <!-- Hours card with live badge -->
+            <div class="rounded-2xl p-5 flex items-center justify-between" style="background:var(--color-bg3); border:1px solid var(--color-border);">
+              <div>
+                <div class="text-white text-sm font-semibold mb-1">Κατάσταση αυτή τη στιγμή</div>
+                <div class="text-gray-400 text-xs" id="next-status-text">Φορτώνεται...</div>
+              </div>
+              <span id="open-badge-footer" role="status" aria-live="polite" class="inline-flex items-center gap-2 text-sm font-bold px-3 py-1.5 rounded-full">
+                <span id="badge-dot-footer" class="w-2 h-2 rounded-full"></span>
+                <span id="badge-text-footer">–</span>
+              </span>
+            </div>
+            <!-- Map -->
+            <div class="rounded-2xl overflow-hidden" style="border:1px solid var(--color-border); height:220px;">
+              <div class="w-full h-full flex flex-col items-center justify-center text-center p-6" style="background:var(--color-bg3);">
+                <div class="text-3xl mb-3">🗺️</div>
+                <div class="text-white font-semibold mb-1">Olympus Fitness</div>
+                <div class="text-gray-400 text-sm mb-4">Εγνατία 147, Θεσσαλονίκη 546 35</div>
+                <a href="https://maps.google.com/?q=Εγνατία+147+Θεσσαλονίκη" target="_blank" rel="noopener noreferrer" class="btn-gold px-5 py-2 text-sm rounded-lg" aria-label="Άνοιγμα χάρτη στο Google Maps"> Οδηγίες στο Google Maps → </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════════════════════════════════════     FOOTER═══════════════════════════════════════════════════════ -->
+    <footer aria-label="Footer">
+      <!-- Instagram strip -->
+      <div class="border-b" style="border-color:var(--color-border);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-display text-2xl text-white tracking-wide">@OLYMPUSFITNESSGR</h3>
+            <a href="#" class="btn-outline px-5 py-2 text-sm rounded-lg" aria-label="Ακολούθησε στο Instagram">Ακολούθησε →</a>
+          </div>
+          <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2" aria-label="Instagram feed">
+            <div class="aspect-square rounded-xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 1" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 2" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 3" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 4" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden hidden sm:block">
+              <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 5" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden hidden sm:block">
+              <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 6" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden hidden md:block">
+              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=200&h=200&fit=crop" loading="lazy" alt="Instagram post 7" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden hidden md:block">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop,spa" loading="lazy" alt="Instagram post 8" class="w-full h-full object-cover hover:opacity-80 transition-opacity" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer main -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <!-- Brand -->
+          <div class="md:col-span-1">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#C9A84C,#F5D98B);">
+                <span class="font-display text-black text-xl">OF</span>
+              </div>
+              <div>
+                <div class="font-display text-xl tracking-widest gold-text">OLYMPUS</div>
+                <div class="text-xs text-gray-500 tracking-[0.2em] uppercase" style="margin-top:-2px;">FITNESS</div>
+              </div>
+            </div>
+            <p class="text-gray-500 text-sm leading-relaxed"> Από το 2010 στη Θεσσαλονίκη. Το γυμναστήριο που ανεβάζει τα όρια. </p>
+            <div class="flex gap-3 mt-5">
+              <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors" style="background:var(--color-bg3); border:1px solid var(--color-border);">f</a>
+              <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-yellow-400 transition-colors" style="background:var(--color-bg3); border:1px solid var(--color-border);">ig</a>
+              <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-red-400 transition-colors" style="background:var(--color-bg3); border:1px solid var(--color-border);">yt</a>
+            </div>
+          </div>
+          <!-- Quick links -->
+          <div>
+            <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-4">Πλοήγηση</h4>
+            <ul class="space-y-2 text-sm text-gray-500">
+              <li>
+                <a href="#services" class="hover:text-yellow-400 transition-colors">Προγράμματα</a>
+              </li>
+              <li>
+                <a href="#pricing" class="hover:text-yellow-400 transition-colors">Συνδρομές</a>
+              </li>
+              <li>
+                <a href="#gallery" class="hover:text-yellow-400 transition-colors">Εγκαταστάσεις</a>
+              </li>
+              <li>
+                <a href="#team" class="hover:text-yellow-400 transition-colors">Η Ομάδα</a>
+              </li>
+              <li>
+                <a href="#faq" class="hover:text-yellow-400 transition-colors">FAQ</a>
+              </li>
+              <li>
+                <a href="#contact" class="hover:text-yellow-400 transition-colors">Επικοινωνία</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Programs -->
+          <div>
+            <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-4">Προγράμματα</h4>
+            <ul class="space-y-2 text-sm text-gray-500">
+              <li>
+                <a href="#services" class="hover:text-yellow-400 transition-colors">CrossFit WOD</a>
+              </li>
+              <li>
+                <a href="#services" class="hover:text-yellow-400 transition-colors">Personal Training</a>
+              </li>
+              <li>
+                <a href="#services" class="hover:text-yellow-400 transition-colors">Yoga &amp; Pilates</a>
+              </li>
+              <li>
+                <a href="#services" class="hover:text-yellow-400 transition-colors">Boxing</a>
+              </li>
+              <li>
+                <a href="#services" class="hover:text-yellow-400 transition-colors">HIIT Cardio</a>
+              </li>
+              <li>
+                <a href="#services" class="hover:text-yellow-400 transition-colors">Nutrition Coaching</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Hours & Contact -->
+          <div>
+            <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-4">Ωράριο</h4>
+            <ul class="space-y-2 text-sm text-gray-500">
+              <li class="flex justify-between">
+                <span>Δε–Πα</span>
+                <span class="text-gray-300">06:30–22:00</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Σάββατο</span>
+                <span class="text-gray-300">08:00–20:00</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Κυριακή</span>
+                <span class="text-gray-300">09:00–17:00</span>
+              </li>
+            </ul>
+            <div class="mt-5 space-y-2 text-sm text-gray-500">
+              <div>
+                <a href="tel:+302310123456" class="hover:text-yellow-400 transition-colors">📞 2310 123 456</a>
+              </div>
+              <div>
+                <a href="mailto:info@olympusfitness.gr" class="hover:text-yellow-400 transition-colors">✉ info@olympusfitness.gr</a>
+              </div>
+              <div>📍 Εγνατία 147, Θεσσαλονίκη</div>
+            </div>
+          </div>
+        </div>
+        <div class="border-t mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-600" style="border-color:var(--color-border);">
+          <p>© 2025 Olympus Fitness. Με επιφύλαξη παντός δικαιώματος. <br class="sm:hidden">Designed by <a href="https://aris.website" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition-colors">aris.website</a>
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="hover:text-gray-400 transition-colors">Πολιτική Απορρήτου</a>
+            <a href="#" class="hover:text-gray-400 transition-colors">Όροι Χρήσης</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ═══════════════════════════════════════════════════════     JAVASCRIPT═══════════════════════════════════════════════════════ -->
+    <script>
+      // ── HELPERS ──────────────────────────────────────────────
+      const $ = (sel) => document.querySelector(sel);
+      const hours = {
+        // [openH, openM, closeH, closeM] — local Greek time
+        0: [9, 0, 17, 0],   // Sun
+        1: [6, 30, 22, 0],  // Mon
+        2: [6, 30, 22, 0],
+        3: [6, 30, 22, 0],
+        4: [6, 30, 22, 0],
+        5: [6, 30, 22, 0],  // Fri
+        6: [8, 0, 20, 0],   // Sat
+      };
+
+      function getOpenStatus() {
+        const now = new Date();
+        const day = now.getDay();
+        const h = now.getHours();
+        const m = now.getMinutes();
+        const [oH, oM, cH, cM] = hours[day];
+        const nowMins = h * 60 + m;
+        const openMins = oH * 60 + oM;
+        const closeMins = cH * 60 + cM;
+        return nowMins >= openMins && nowMins < closeMins;
+      }
+
+      function getNextStatusText() {
+        const now = new Date();
+        const day = now.getDay();
+        const h = now.getHours();
+        const m = now.getMinutes();
+        const [oH, oM, cH, cM] = hours[day];
+        const nowMins = h * 60 + m;
+        const openMins = oH * 60 + oM;
+        const closeMins = cH * 60 + cM;
+        const dayNames = ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'];
+        if (nowMins >= openMins && nowMins < closeMins) {
+          const rem = closeMins - nowMins;
+          const rh = Math.floor(rem / 60), rm = rem % 60;
+          return `Κλείνει σε ${rh>0 ? rh+'ω ':''} ${rm} λεπτά`;
+        } else if (nowMins < openMins) {
+          return `Ανοίγει σήμερα στις ${oH}:${String(oM).padStart(2,'0')}`;
+        } else {
+          const nextDay = (day + 1) % 7;
+          const [nH, nM] = hours[nextDay];
+          return `Ανοίγει ${dayNames[nextDay]} στις ${nH}:${String(nM).padStart(2,'0')}`;
+        }
+      }
+
+      function updateBadge() {
+        const isOpen = getOpenStatus();
+        const label = isOpen ? 'Ανοιχτά' : 'Κλειστά';
+        const cls = isOpen ? 'open' : 'closed';
+
+        // Navbar badge
+        const badge = $('#open-badge');
+        if (badge) {
+          badge.className = '';
+          badge.id = 'open-badge';
+          badge.classList.add(cls);
+          $('#badge-text').textContent = label;
+        }
+
+        // Footer badge
+        const badgeF = $('#open-badge-footer');
+        if (badgeF) {
+          badgeF.className = 'inline-flex items-center gap-2 text-sm font-bold px-3 py-1.5 rounded-full';
+          if (isOpen) {
+            badgeF.style.background = 'rgba(34,197,94,0.15)';
+            badgeF.style.color = '#22c55e';
+            badgeF.style.border = '1px solid rgba(34,197,94,0.3)';
+            $('#badge-dot-footer').style.background = '#22c55e';
+          } else {
+            badgeF.style.background = 'rgba(239,68,68,0.12)';
+            badgeF.style.color = '#ef4444';
+            badgeF.style.border = '1px solid rgba(239,68,68,0.2)';
+            $('#badge-dot-footer').style.background = '#ef4444';
+          }
+          $('#badge-text-footer').textContent = label;
+        }
+
+        const nst = $('#next-status-text');
+        if (nst) nst.textContent = getNextStatusText();
+      }
+
+      updateBadge();
+      setInterval(updateBadge, 60000);
+
+      // ── NAVBAR SCROLL ─────────────────────────────────────────
+      window.addEventListener('scroll', () => {
+        const nb = $('#navbar');
+        if (window.scrollY > 40) nb.classList.add('scrolled');
+        else nb.classList.remove('scrolled');
+      }, { passive: true });
+
+      // ── MOBILE MENU ───────────────────────────────────────────
+      const menuToggle = $('#menu-toggle');
+      const mobileMenu = $('#mobile-menu');
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        $('#ham1').style.transform = '';
+        $('#ham2').style.opacity = '1';
+        $('#ham3').style.transform = '';
+      }
+
+      menuToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+        if (isOpen) {
+          $('#ham1').style.transform = 'rotate(45deg) translate(4px, 5px)';
+          $('#ham2').style.opacity = '0';
+          $('#ham3').style.transform = 'rotate(-45deg) translate(4px, -5px)';
+        } else {
+          closeMobileMenu();
+        }
+      });
+
+      // ── FAQ ACCORDION ─────────────────────────────────────────
+      function toggleFaq(btn) {
+        const answer = btn.nextElementSibling;
+        const isOpen = answer.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-btn').forEach(b => {
+          b.classList.remove('open');
+          b.setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          answer.classList.add('open');
+          btn.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      // ── BEFORE / AFTER SLIDER ─────────────────────────────────
+      (function() {
+        const container = document.getElementById('ba-container');
+        const after = document.getElementById('ba-after');
+        const handle = document.getElementById('ba-handle');
+        if (!container) return;
+
         let dragging = false;
-        function setPos(x) {          const rect = container.getBoundingClientRect();          let pct = ((x - rect.left) / rect.width) * 100;          pct = Math.max(2, Math.min(98, pct));          after.style.width = pct + '%';          handle.style.left = pct + '%';          handle.setAttribute('aria-valuenow', Math.round(pct));        }
-        handle.addEventListener('mousedown', (e) => {          dragging = true;          e.preventDefault();        });
-        handle.addEventListener('touchstart', (e) => {          dragging = true;        }, {          passive: true        });
-        window.addEventListener('mousemove', (e) => {          if (dragging) setPos(e.clientX);        });
-        window.addEventListener('touchmove', (e) => {          if (dragging && e.touches[0]) setPos(e.touches[0].clientX);        }, {          passive: true        });
-        window.addEventListener('mouseup', () => {          dragging = false;        });
-        window.addEventListener('touchend', () => {          dragging = false;        });
-        // Keyboard support          handle.addEventListener('keydown', (e) => {              const rect = container.getBoundingClientRect();              const cur = parseFloat(after.style.width || '50');              if (e.key === 'ArrowLeft') setPos(rect.left + (cur - 5) / 100 * rect.width);              if (e.key === 'ArrowRight') setPos(rect.left + (cur + 5) / 100 * rect.width);          });      })();
-      // ── FORM SUBMIT ───────────────────────────────────────────      function handleFormSubmit(e) {          e.preventDefault();          const form = e.target;          const success = document.getElementById('form-success');          form.style.display = 'none';          success.classList.remove('hidden');      }    </script>  </body></html>
+
+        function setPos(x) {
+          const rect = container.getBoundingClientRect();
+          let pct = ((x - rect.left) / rect.width) * 100;
+          pct = Math.max(2, Math.min(98, pct));
+          after.style.width = pct + '%';
+          handle.style.left = pct + '%';
+          handle.setAttribute('aria-valuenow', Math.round(pct));
+        }
+        handle.addEventListener('mousedown', (e) => {
+          dragging = true;
+          e.preventDefault();
+        });
+        handle.addEventListener('touchstart', (e) => {
+          dragging = true;
+        }, { passive: true });
+        window.addEventListener('mousemove', (e) => {
+          if (dragging) setPos(e.clientX);
+        });
+        window.addEventListener('touchmove', (e) => {
+          if (dragging && e.touches[0]) setPos(e.touches[0].clientX);
+        }, { passive: true });
+        window.addEventListener('mouseup', () => {
+          dragging = false;
+        });
+        window.addEventListener('touchend', () => {
+          dragging = false;
+        });
+
+        // Keyboard support
+        handle.addEventListener('keydown', (e) => {
+          const rect = container.getBoundingClientRect();
+          const cur = parseFloat(after.style.width || '50');
+          if (e.key === 'ArrowLeft') setPos(rect.left + (cur - 5) / 100 * rect.width);
+          if (e.key === 'ArrowRight') setPos(rect.left + (cur + 5) / 100 * rect.width);
+        });
+      })();
+
+      // ── FORM SUBMIT ───────────────────────────────────────────
+      function handleFormSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const success = document.getElementById('form-success');
+        form.style.display = 'none';
+        success.classList.remove('hidden');
+      }
+    </script>
+  </body>
+</html>
